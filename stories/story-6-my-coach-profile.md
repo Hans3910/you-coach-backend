@@ -15,7 +15,7 @@
       - Introduction (coach-information.label.introduction)
       - Availability (coach-information.label.availability)
       
-  - Coaching topics section of coach profile contains:
+  - Coaching topics section of coach profile contains: (Not changeable by coach see story 7/8)
     - topic
     - year
 
