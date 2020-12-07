@@ -5,7 +5,7 @@
  - Profile information section of coach profile contains:
      - First name (shared with my profile)  (coach-profile-information.label.first-name)
      - Last name (shared with my profile) (coach-profile-information.label.last-name)
-     - Email (shared with my profile) (coach-profile-information.label.email)
+     - Email (shared with my profile) (coach-profile-information.label.string)
      - class (out of scope, story 35)
      - role (shared with my profile) (coach-profile-information.label.role)
      - picture (url)

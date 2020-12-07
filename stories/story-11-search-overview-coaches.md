@@ -3,8 +3,8 @@
 **As a coachee I want to be able to search a coach from the overview of all coaches**
 
 - Find a coach page
-    - search by name or email (coach-overview.label.search-placeholder)
-        - search works on first name, last name or email        - 
+    - search by name or string (coach-overview.label.search-placeholder)
+        - search works on first name, last name or string        - 
         - search starts after 3 characters
      
   - in scope

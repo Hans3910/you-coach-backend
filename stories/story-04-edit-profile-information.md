@@ -4,16 +4,16 @@
  - coachee can edit
      - First name (profile-information.label.first-name)
      - Last name (profile-information.label.last-name)
-     - email (profile-information.label.email)
-        - alert, your email address is used to sign-in (profile-information.message.change-email)
+     - string (profile-information.label.string)
+        - alert, your string address is used to sign-in (profile-information.message.change-string)
      - role (disabled)(profile-information.label.role)
      - picture (url)  (profile-information.label.profile-picture)
      
 - admin can edit
      - First name 
      - Last name
-     - email
-        - alert, your email address is used to sign-in (profile-information.message.change-email)
+     - string
+        - alert, your string address is used to sign-in (profile-information.message.change-string)
      - role (dropdown: coachee, coach, administrator)
      - picture (url) 
      

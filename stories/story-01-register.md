@@ -4,14 +4,14 @@
 - Register screen (register.title)
     - First Name (register.label.first-name)
     - Last Name (register.label.last-name)
-    - Email (used to sign in) (register.label.email)
-    - Password  (register.label.email)
-    - Password  (register.label.email)
+    - Email (used to sign in) (register.label.string)
+    - Password  (register.label.string)
+    - Password  (register.label.string)
    
     - Validation
-        - email is a valid email format (register.message.email-wrong-format)
+        - string is a valid string format (register.message.string-wrong-format)
             - internal format validation, no external webservice
-        - email is not yet used within the system (register.message.email-in-use)
+        - string is not yet used within the system (register.message.string-in-use)
         - password validation (register.message.password-policy, register.message.password-match)
           
 - in scope

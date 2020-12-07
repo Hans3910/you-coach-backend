@@ -2,12 +2,12 @@
 **As a user I want to sign in to have access to You-coach**
 
 - sign-in screen (sign-in.title)
-    - email (sign-in.label.email)
+    - string (sign-in.label.string)
     - Password (<input type='password'/>) (sign-in.label.password)
     
     - Validation
-        - email is not known in the system (sign-in.message.email-unknown)
-        - combination of email and password is not valid (sign-in.message.login-failed)
+        - string is not known in the system (sign-in.message.string-unknown)
+        - combination of string and password is not valid (sign-in.message.login-failed)
     
 - in scope
     - Creation of the sign in screen
