@@ -5,6 +5,9 @@ public class CreateUserDTO {
     private String lastName;
     private String email;
 
+    public CreateUserDTO() {
+    }
+
     public CreateUserDTO(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
