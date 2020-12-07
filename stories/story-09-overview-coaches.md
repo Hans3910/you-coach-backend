@@ -8,7 +8,7 @@
         - topics + year
         - picture
     - filter by topic and year (out of scope, story 10)
-    - search by name or email (out of scope, story 11)
+    - search by name or string (out of scope, story 11)
      
   - in scope
       - adding 'Find a coach' to the general menu (menu.link.find-a-coach)

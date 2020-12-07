@@ -1,7 +1,7 @@
 ## Test users
 
 
-| role          | email               | password |
+| role          | string               | password |
 |---------------|---------------------|----------|
 | coachee       | coachee1@school.org | YouC0ach |
 | coachee       | coachee2@school.org | YouC0ach |

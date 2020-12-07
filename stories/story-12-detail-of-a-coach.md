@@ -5,7 +5,7 @@
  - Profile information section of coach profile contains:
      - First name  (coach-profile-information.label.first-name)
      - Last name (coach-profile-information.label.last-name)
-     - Email (coach-profile-information.label.email)
+     - Email (coach-profile-information.label.string)
      - class (out of scope, story 35)
      - picture (url)
      
@@ -29,4 +29,3 @@
 
  - mockups
      - ![signin](../img/detail-of-a-coach.png)
-  

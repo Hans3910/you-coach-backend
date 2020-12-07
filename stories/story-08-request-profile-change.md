@@ -5,7 +5,7 @@
   - in scope
       - adding 'request profile change' menu in My Coach Profile menu (my-coach-profile-menu.link.request-profile-change)
       - adding 'request profile change' page (under construction) (request-profile-change.title)
-      - adding send mail button (become-a-coach.button.send-email)
+      - adding send mail button (become-a-coach.button.send-string)
 
   - Open Questions
 
