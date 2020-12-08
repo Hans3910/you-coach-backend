@@ -31,4 +31,13 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
             throws IOException {
         response.sendError(HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());
     }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    @Order(value = 10)
+    protected void userNotFoundException(UserNotFoundException ex, HttpServletResponse response)
+            throws IOException {
+        response.sendError(HttpServletResponse.SC_BAD_REQUEST, ex.getMessage());
+    }
 }

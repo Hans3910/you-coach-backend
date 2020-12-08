@@ -1,10 +1,9 @@
 package com.switchfully.youcoach.user_management.user_domain;
 
+import com.switchfully.youcoach.user_management.user_domain.entity.Email;
 import com.switchfully.youcoach.user_management.user_exceptions.EmailException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class EmailTest {
 

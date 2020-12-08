@@ -1,4 +1,4 @@
-package com.switchfully.youcoach.user_management.user_domain;
+package com.switchfully.youcoach.user_management.user_domain.entity;
 
 import javax.persistence.*;
 import java.util.UUID;

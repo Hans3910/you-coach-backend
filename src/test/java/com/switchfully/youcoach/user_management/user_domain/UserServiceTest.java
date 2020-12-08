@@ -1,14 +1,16 @@
 package com.switchfully.youcoach.user_management.user_domain;
 
-import com.switchfully.youcoach.user_management.UserMapper;
-import com.switchfully.youcoach.user_management.user_dto.CreateUserDTO;
+import com.switchfully.youcoach.user_management.user_domain.entity.Email;
+import com.switchfully.youcoach.user_management.user_domain.entity.User;
+import com.switchfully.youcoach.user_management.user_domain.repository.UserRepository;
 import com.switchfully.youcoach.user_management.user_exceptions.UsedEmailException;
+import com.switchfully.youcoach.user_management.user_service.UserService;
+import com.switchfully.youcoach.user_management.user_service.user_dto.CreateUserDTO;
+import com.switchfully.youcoach.user_management.user_service.user_mapper.UserMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UserServiceTest {
 

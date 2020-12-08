@@ -1,17 +1,17 @@
-package com.switchfully.youcoach.user_management.user_dto;
+package com.switchfully.youcoach.user_management.user_service.user_dto;
 
-public class CreateUserDTO {
+public class GetUserDTO {
+    private String id;
     private String firstName;
     private String lastName;
     private String email;
 
-    public CreateUserDTO() {
+    public String getId() {
+        return id;
     }
 
-    public CreateUserDTO(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {
