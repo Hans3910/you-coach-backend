@@ -20,12 +20,16 @@ public class User {
     @Column
     private Email email;
     //private Email password;
+    @OneToOne
+    @JoinColumn
+    private Coachee coachee;
 
     public User(String firstName, String lastName, Email email) {
         this.id = UUID.randomUUID();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.coachee = new Coachee();
     }
 
     public User() {
@@ -45,5 +49,9 @@ public class User {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Coachee getCoachee() {
+        return coachee;
     }
 }
