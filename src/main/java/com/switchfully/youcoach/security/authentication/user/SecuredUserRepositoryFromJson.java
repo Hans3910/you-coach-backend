@@ -1,4 +1,4 @@
-package com.switchfully.skeleton.security.authentication.user;
+package com.switchfully.youcoach.security.authentication.user;
 
 import java.util.List;
 

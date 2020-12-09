@@ -1,8 +1,8 @@
-package com.switchfully.skeleton.security.authentication.jwt;
+package com.switchfully.youcoach.security.authentication.jwt;
 
-import com.switchfully.skeleton.security.authorization.Feature;
-import com.switchfully.skeleton.security.authorization.Role;
-import com.switchfully.skeleton.security.authorization.RoleToFeatureMapper;
+import com.switchfully.youcoach.security.authorization.Feature;
+import com.switchfully.youcoach.security.authorization.Role;
+import com.switchfully.youcoach.security.authorization.RoleToFeatureMapper;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -10,7 +10,6 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.security.SignatureException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,4 +1,4 @@
-package com.switchfully.skeleton.security.authorization;
+package com.switchfully.youcoach.security.authorization;
 
 public enum Feature {
     REQUEST_SESSION("requestsession"),

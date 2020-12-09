@@ -1,6 +1,6 @@
-package com.switchfully.skeleton.security.authentication.user;
+package com.switchfully.youcoach.security.authentication.user;
 
-import com.switchfully.skeleton.security.authorization.Role;
+import com.switchfully.youcoach.security.authorization.Role;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
