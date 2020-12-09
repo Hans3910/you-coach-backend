@@ -5,6 +5,7 @@ public class GetUserDTO {
     private String firstName;
     private String lastName;
     private String email;
+    private GetCoacheeDTO getCoacheeDTO;
 
     public String getId() {
         return id;
@@ -36,5 +37,13 @@ public class GetUserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public GetCoacheeDTO getGetCoacheeDTO() {
+        return getCoacheeDTO;
+    }
+
+    public void setGetCoacheeDTO(GetCoacheeDTO getCoacheeDTO) {
+        this.getCoacheeDTO = getCoacheeDTO;
     }
 }

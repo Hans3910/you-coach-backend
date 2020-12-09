@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.attribute.standard.Media;
 import java.util.List;
 
 @RequestMapping(path = "/users")
@@ -37,5 +38,12 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public void registerUser(@RequestBody CreateUserDTO createUserDTO) {
         userService.registerUser(createUserDTO);
+    }
+
+
+    @GetMapping(path = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public GetUserDTO getUserById(@PathVariable String userId) {
+        return userService.getUserById(userId);
     }
 }
