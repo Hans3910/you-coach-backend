@@ -7,6 +7,7 @@ import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDTO
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.print.attribute.standard.Media;
@@ -30,6 +31,7 @@ public class UserController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAuthority('admin')")
     public List<GetUserDTO> getAllUser() {
         return userService.getAllUsers();
     }
@@ -43,6 +45,7 @@ public class UserController {
 
     @GetMapping(path = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.ACCEPTED)
+    @PreAuthorize("principal.username == userId")
     public GetUserDTO getUserById(@PathVariable String userId) {
         return userService.getUserById(userId);
     }
