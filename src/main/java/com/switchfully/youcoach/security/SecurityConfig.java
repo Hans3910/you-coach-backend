@@ -17,8 +17,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-@EnableWebSecurity(debug = true)
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableWebSecurity(debug = false)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final PasswordEncoder passwordEncoder;
     private String jwtSecret;
@@ -31,6 +31,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.jwtSecret = jwtSecret;
         this.roleToFeatureMapper = roleToFeatureMapper;
     }
+    /*
+     Allows every action.
+     */
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().anyRequest().permitAll();
+    }
+
     // ======== step 0 ========
     // Christoph was so kind to disable security
     // (Believe me, security can be quite annoying during development)
@@ -67,20 +74,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      //======== step 3 =========
     // But ... you need to be logged in first ...
     // So ... how can you register?? Chicken-egg-problem
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()
-                // we want to allow a POST on /users for _EVERYONE_
-                .antMatchers(HttpMethod.POST, "/users").permitAll()
-                // this is an other example
-                .antMatchers("/home", "/public").permitAll()
-                // all other requests are secured
-                .anyRequest().authenticated()
-                .and()
-                // not by a form, but by our 'special' security filter
-                .addFilter(new VeryUnsafeFilter(authenticationManager()))
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-    }
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.cors().and().csrf().disable().authorizeRequests()
+//                // we want to allow a POST on /users for _EVERYONE_
+//                .antMatchers(HttpMethod.POST, "/users").permitAll()
+//                // this is an other example
+//                .antMatchers("/home", "/public").permitAll()
+//                // all other requests are secured
+//                .anyRequest().authenticated()
+//                .and()
+//                // not by a form, but by our 'special' security filter
+//                .addFilter(new VeryUnsafeFilter(authenticationManager()))
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//    }
     // ======== the next step ... JWT =========
 //    // POST your username/password to /login
 //    // => you will receive a token in return (your secure key)

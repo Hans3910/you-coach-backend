@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAuthority('admin')")
+//    @PreAuthorize("hasAuthority('admin')")
     public List<GetUserDTO> getAllUser() {
         return userService.getAllUsers();
     }
@@ -45,7 +45,7 @@ public class UserController {
 
     @GetMapping(path = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    @PreAuthorize("principal.username == userId")
+//    @PreAuthorize("#userId == authentication.name")
     public GetUserDTO getUserById(@PathVariable String userId) {
         return userService.getUserById(userId);
     }
