@@ -38,8 +38,8 @@ public class UserController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerUser(@RequestBody CreateUserDTO createUserDTO) {
-        userService.registerUser(createUserDTO);
+    public GetUserDTO registerUser(@RequestBody CreateUserDTO createUserDTO) {
+        return userService.registerUser(createUserDTO);
     }
 
 

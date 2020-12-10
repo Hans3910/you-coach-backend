@@ -38,11 +38,14 @@ public class UserService {
         this.coacheeMapper = coacheeMapper;
     }
 
-    public void registerUser(CreateUserDTO createUserDTO) {
+    public GetUserDTO registerUser(CreateUserDTO createUserDTO) {
         User user = userMapper.convertCreateUserDtoToUser(createUserDTO);
         isEmailUnique(user.getEmail());
         coacheeRepository.save(user.getCoachee());
-        userRepository.save(user);
+        GetUserDTO result = userMapper.convertUserToGetUserDTO(userRepository.save(user));
+        System.out.println(result);
+        result.setGetCoacheeDTO(coacheeMapper.convertCoacheeToGetCoacheeDTO(user.getCoachee()));
+        return result;
     }
 
     public void isEmailUnique(Email email) {
