@@ -54,4 +54,20 @@ public class User {
     public Coachee getCoachee() {
         return coachee;
     }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(Email email) {
+        this.email = email;
+    }
+
+    public void setCoachee(Coachee coachee) {
+        this.coachee = coachee;
+    }
 }

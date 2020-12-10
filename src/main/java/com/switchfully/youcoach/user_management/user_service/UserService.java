@@ -8,6 +8,7 @@ import com.switchfully.youcoach.user_management.user_domain.repository.UserRepos
 import com.switchfully.youcoach.user_management.user_exceptions.UsedEmailException;
 import com.switchfully.youcoach.user_management.user_exceptions.UserNotFoundException;
 import com.switchfully.youcoach.user_management.user_service.user_dto.CreateUserDTO;
+import com.switchfully.youcoach.user_management.user_service.user_dto.GetCoacheeDTO;
 import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDTO;
 import com.switchfully.youcoach.user_management.user_service.user_mapper.CoacheeMapper;
 import com.switchfully.youcoach.user_management.user_service.user_mapper.UserMapper;
@@ -78,6 +79,22 @@ public class UserService {
             GetUserDTO getUserDTO = userMapper.convertUserToGetUserDTO(user.get());
             getUserDTO.setGetCoacheeDTO(coacheeMapper.convertCoacheeToGetCoacheeDTO(user.get().getCoachee()));
             return getUserDTO;
+        }
+    }
+
+    public GetUserDTO editUser(String id, GetUserDTO getUserDTO) {
+        Optional<User> user = userRepository.findById(UUID.fromString(id));
+        if (user.isEmpty()) {
+            throw new UserNotFoundException("This user does not exist.");
+        } else {
+            User userToEdit = user.get();
+            userToEdit.setFirstName(getUserDTO.getFirstName());
+            userToEdit.setLastName(getUserDTO.getLastName());
+            userToEdit.setEmail(new Email(getUserDTO.getEmail()));
+            GetCoacheeDTO getCoacheeDTO = coacheeMapper.convertCoacheeToGetCoacheeDTO(userToEdit.getCoachee());
+            GetUserDTO result = userMapper.convertUserToGetUserDTO(userToEdit);
+            result.setGetCoacheeDTO(getCoacheeDTO);
+            return result;
         }
     }
 }
