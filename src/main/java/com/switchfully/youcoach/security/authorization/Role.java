@@ -1,4 +1,4 @@
-package com.switchfully.skeleton.security.authorization;
+package com.switchfully.youcoach.security.authorization;
 
 public enum Role {
     STUDENT("student"),

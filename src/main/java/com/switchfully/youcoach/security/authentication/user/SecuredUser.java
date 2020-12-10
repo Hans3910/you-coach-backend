@@ -1,19 +1,19 @@
-package com.switchfully.skeleton.security.authentication.user;
+package com.switchfully.youcoach.security.authentication.user;
 
-import com.switchfully.skeleton.security.authorization.Role;
+import com.switchfully.youcoach.security.authorization.Role;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
 public class SecuredUser {
 //We don't really need the id here. We can do without it
-   // private Long id;
+    private Long id;
     private String username;
     private String password;
     private List<Role> roles;
 //Include id in constructor if finally used
     public SecuredUser(String username, String password, List<Role> roles) {
-       // this.id = id;
+        this.id = id;
         this.username = username;
         this.password = password;
         this.roles = roles;
@@ -39,13 +39,13 @@ public class SecuredUser {
         this.password = password;
     }
 
-  //  public Long getId() {
-//        return id;
-//    }
+    public Long getId() {
+        return id;
+    }
 
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public List<Role> getRoles() {
         return roles;
@@ -58,7 +58,7 @@ public class SecuredUser {
     @Override
     public String toString() {
         return "SecuredUser{" +
-//                "id=" + id +
+                "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';

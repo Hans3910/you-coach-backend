@@ -1,11 +1,10 @@
-package com.switchfully.skeleton.security.authentication.jwt;
+package com.switchfully.youcoach.security.authentication.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.switchfully.skeleton.security.authentication.user.SecuredUser;
+import com.switchfully.youcoach.security.authentication.user.SecuredUser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

@@ -1,4 +1,4 @@
-package com.switchfully.skeleton.security.authentication.user;
+package com.switchfully.youcoach.security.authentication.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
