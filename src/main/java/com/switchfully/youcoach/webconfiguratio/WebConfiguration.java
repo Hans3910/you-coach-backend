@@ -1,5 +1,6 @@
 package com.switchfully.youcoach.webconfiguratio;
 
+import org.apache.catalina.filters.CorsFilter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -13,11 +14,21 @@ public class WebConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/users")
                 .allowedOrigins("http://localhost:4200")
-                .allowedMethods("POST");
+                .allowedMethods("POST")
+                .allowedMethods("GET")
+                .allowedMethods("PUT")
+                .allowedMethods("OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true);
+        ;
 
-        registry.addMapping("/users/*")
+        registry.addMapping("/users/**")
                 .allowedOrigins("http://localhost:4200")
-                .allowedMethods("GET");
-
+                .allowedMethods("POST")
+                .allowedMethods("GET")
+                .allowedMethods("PUT")
+                .allowedMethods("OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 }

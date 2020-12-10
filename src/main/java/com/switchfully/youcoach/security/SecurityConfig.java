@@ -31,11 +31,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.jwtSecret = jwtSecret;
         this.roleToFeatureMapper = roleToFeatureMapper;
     }
+
     /*
      Allows every action.
      */
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests().anyRequest().permitAll();
+        http.cors();
     }
 
     // ======== step 0 ========
@@ -71,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .addFilter(new VeryUnsafeFilter(authenticationManager()))
 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 //    }
-     //======== step 3 =========
+    //======== step 3 =========
     // But ... you need to be logged in first ...
     // So ... how can you register?? Chicken-egg-problem
 

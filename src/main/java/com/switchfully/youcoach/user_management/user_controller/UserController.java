@@ -50,7 +50,7 @@ public class UserController {
         return userService.getUserById(userId);
     }
 
-    @PutMapping(path = "/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public GetUserDTO editUser(@PathVariable String userId, @RequestBody GetUserDTO getUserDTO) {
         return userService.editUser(userId, getUserDTO);
