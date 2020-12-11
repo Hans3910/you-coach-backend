@@ -94,4 +94,6 @@ public class User {
     public void setCoachee(Coachee coachee) {
         this.coachee = coachee;
     }
+
+    public String getFullName() { return firstName+" "+lastName; }
 }

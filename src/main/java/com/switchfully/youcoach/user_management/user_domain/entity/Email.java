@@ -1,6 +1,6 @@
 package com.switchfully.youcoach.user_management.user_domain.entity;
 
-import com.switchfully.youcoach.user_management.user_exceptions.EmailException;
+import com.switchfully.youcoach.exceptions.EmailException;
 
 import javax.persistence.Embeddable;
 import java.util.Objects;
