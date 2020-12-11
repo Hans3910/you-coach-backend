@@ -1,4 +1,4 @@
-package com.switchfully.youcoach.user_management.user_exceptions;
+package com.switchfully.youcoach.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

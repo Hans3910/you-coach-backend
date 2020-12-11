@@ -1,4 +1,4 @@
-package com.switchfully.youcoach.user_management.user_exceptions;
+package com.switchfully.youcoach.exceptions;
 
 public class EmailException extends RuntimeException {
     private String emailExceptionMessage;

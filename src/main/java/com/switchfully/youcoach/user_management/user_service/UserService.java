@@ -5,15 +5,14 @@ import com.switchfully.youcoach.user_management.user_domain.entity.Email;
 import com.switchfully.youcoach.user_management.user_domain.entity.User;
 import com.switchfully.youcoach.user_management.user_domain.repository.CoacheeRepository;
 import com.switchfully.youcoach.user_management.user_domain.repository.UserRepository;
-import com.switchfully.youcoach.user_management.user_exceptions.UsedEmailException;
-import com.switchfully.youcoach.user_management.user_exceptions.UserNotFoundException;
+import com.switchfully.youcoach.exceptions.UsedEmailException;
+import com.switchfully.youcoach.exceptions.UserNotFoundException;
 import com.switchfully.youcoach.user_management.user_service.user_dto.CreateUserDTO;
 import com.switchfully.youcoach.user_management.user_service.user_dto.GetCoacheeDTO;
 import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDTO;
 import com.switchfully.youcoach.user_management.user_service.user_mapper.CoacheeMapper;
 import com.switchfully.youcoach.user_management.user_service.user_mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Transient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
