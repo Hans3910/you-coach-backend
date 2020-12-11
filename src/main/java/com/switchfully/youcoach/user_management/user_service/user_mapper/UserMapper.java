@@ -19,6 +19,7 @@ public class UserMapper {
         getUserDTO.setFirstName(user.getFirstName());
         getUserDTO.setLastName(user.getLastName());
         getUserDTO.setEmail(user.getEmail().getEmail());
+        getUserDTO.setPictureUrl(user.getPictureUrl());
         return getUserDTO;
     }
 }

@@ -5,6 +5,7 @@ public class CreateUserDTO {
     private String lastName;
     private String email;
 
+
     public CreateUserDTO() {
     }
 
@@ -12,6 +13,7 @@ public class CreateUserDTO {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+
     }
 
     public String getFirstName() {
@@ -37,4 +39,6 @@ public class CreateUserDTO {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 }
