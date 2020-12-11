@@ -23,6 +23,16 @@ public class User {
     @OneToOne
     @JoinColumn
     private Coachee coachee;
+    @OneToOne
+    @JoinColumn
+    private Coach coach;
+
+//    We will probably need an admin at some point. In the meantime...
+//    @OneToOne
+//    @JoinColumn
+//    private Admin admin;
+
+    //TODO: When do you actually become a coach? It is never mentioned in the stories. Ask Karel & Christoph
 
     public User(String firstName, String lastName, Email email) {
         this.id = UUID.randomUUID();
@@ -30,6 +40,8 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.coachee = new Coachee();
+        this.coach = null;
+//        this.admin= null;
     }
 
     public User() {
