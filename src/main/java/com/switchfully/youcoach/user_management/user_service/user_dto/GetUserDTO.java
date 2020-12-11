@@ -6,6 +6,7 @@ public class GetUserDTO {
     private String lastName;
     private String email;
     private GetCoacheeDTO getCoacheeDTO;
+    private String pictureUrl;
 
     public String getId() {
         return id;
@@ -45,5 +46,13 @@ public class GetUserDTO {
 
     public void setGetCoacheeDTO(GetCoacheeDTO getCoacheeDTO) {
         this.getCoacheeDTO = getCoacheeDTO;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 }
