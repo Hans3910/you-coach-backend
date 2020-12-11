@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMapper {
     public User convertCreateUserDtoToUser(CreateUserDTO createUserDTO) {
-        return new User(createUserDTO.getFirstName(), createUserDTO.getLastName(), new Email(createUserDTO.getEmail()), createUserDTO.getPictureUrl());
+        return new User(createUserDTO.getFirstName(), createUserDTO.getLastName(), new Email(createUserDTO.getEmail()));
     }
 
     public GetUserDTO convertUserToGetUserDTO(User user) {

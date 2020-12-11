@@ -36,7 +36,7 @@ public class User {
 
     //TODO: When do you actually become a coach? It is never mentioned in the stories. Ask Karel & Christoph
 
-    public User(String firstName, String lastName, Email email, String pictureUrl) {
+    public User(String firstName, String lastName, Email email) {
 
         this.id = UUID.randomUUID();
         this.firstName = firstName;
@@ -44,7 +44,7 @@ public class User {
         this.email = email;
         this.coachee = new Coachee();
         this.coach = null;
-        this.pictureUrl = pictureUrl;
+        this.pictureUrl = "";
 //       this.admin= null;
     }
 

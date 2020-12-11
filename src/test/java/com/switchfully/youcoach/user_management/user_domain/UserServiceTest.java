@@ -38,8 +38,8 @@ class UserServiceTest {
 
     @Test
     void givenNewUser_ItWillBeRegisteredIfEmailIsDistinct() {
-        User user1 = new User("John", "Doe", new Email("john_doe@hotmail.com"), "pictureUrl");
-        CreateUserDTO createUserDTO1 = new CreateUserDTO("John", "Doe", "john_doe@hotmail.com", "pictureUrl");
+        User user1 = new User("John", "Doe", new Email("john_doe@hotmail.com"));
+        CreateUserDTO createUserDTO1 = new CreateUserDTO("John", "Doe", "john_doe@hotmail.com");
         Mockito.when(userMapper.convertCreateUserDtoToUser(createUserDTO1)).thenReturn(user1);
         userService.registerUser(createUserDTO1);
         Mockito.verify(userRepository).save(user1);
@@ -47,14 +47,14 @@ class UserServiceTest {
 
     @Test
     void givenNewUser_IfEmailIsAlreadyUsed_UsedEmailExceptionIsThrown() {
-        User user1 = new User("John", "Doe", new Email("john_doe@hotmail.com"), "pictureUrl");
+        User user1 = new User("John", "Doe", new Email("john_doe@hotmail.com"));
         Mockito.when(userRepository.existsDistinctByEmail(user1.getEmail())).thenReturn(true);
         Assertions.assertThrows(UsedEmailException.class, () -> userService.isEmailUnique(user1.getEmail()));
     }
 
     @Test
     void givenEmail_IfUserExists_ThenIGetAUserDto() {
-        User user1 = new User("John", "Doe", new Email("john_doe@hotmail.com"), "pictureUrl");
+        User user1 = new User("John", "Doe", new Email("john_doe@hotmail.com"));
 
         GetUserDTO getUserDTO = new GetUserDTO();
         getUserDTO.setFirstName(user1.getFirstName());
@@ -70,7 +70,7 @@ class UserServiceTest {
 
     @Test
     void givenEmail_IfUserDoesNotExist_ThenAUserNotFoundExceptionIsThrown() {
-        User user1 = new User("John", "Doe", new Email("john_doe@hotmail.com"), "pictureUrl");
+        User user1 = new User("John", "Doe", new Email("john_doe@hotmail.com"));
         Optional<User> userOptional = Optional.of(user1);
         Mockito.when(userRepository.findByEmail(new Email("john_doe@hotmail.com"))).thenReturn(userOptional);
         Assertions.assertThrows(UserNotFoundException.class,()-> userService.signIn("wrongemail@hotmail.com"));
@@ -78,7 +78,7 @@ class UserServiceTest {
 
     @Test
     void givenId_IfUserExists_ThenIGetAUserDto() {
-        User user1 = new User("John", "Doe", new Email("john_doe@hotmail.com"), "pictureUrl");
+        User user1 = new User("John", "Doe", new Email("john_doe@hotmail.com"));
         GetUserDTO getUserDTO = new GetUserDTO();
         getUserDTO.setFirstName(user1.getFirstName());
         getUserDTO.setLastName(user1.getLastName());
