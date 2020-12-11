@@ -91,6 +91,7 @@ public class UserService {
             userToEdit.setFirstName(getUserDTO.getFirstName());
             userToEdit.setLastName(getUserDTO.getLastName());
             userToEdit.setEmail(new Email(getUserDTO.getEmail()));
+            userToEdit.setPictureUrl(getUserDTO.getPictureUrl());
             GetCoacheeDTO getCoacheeDTO = coacheeMapper.convertCoacheeToGetCoacheeDTO(userToEdit.getCoachee());
             GetUserDTO result = userMapper.convertUserToGetUserDTO(userToEdit);
             result.setGetCoacheeDTO(getCoacheeDTO);
