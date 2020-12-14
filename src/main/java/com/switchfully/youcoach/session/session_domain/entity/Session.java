@@ -1,6 +1,6 @@
 package com.switchfully.youcoach.session.session_domain.entity;
 
-import com.switchfully.youcoach.user_management.user_domain.entity.Coach;
+import com.switchfully.youcoach.coach_management.coach_domain.entity.Coach;
 import com.switchfully.youcoach.user_management.user_domain.entity.Coachee;
 
 import javax.persistence.*;

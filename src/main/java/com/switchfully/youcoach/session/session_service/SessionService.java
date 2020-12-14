@@ -4,7 +4,7 @@ import com.switchfully.youcoach.exceptions.UserNotFoundException;
 import com.switchfully.youcoach.session.session_domain.repository.SessionRepository;
 import com.switchfully.youcoach.session.session_service.session_dto.CreateSessionDto;
 import com.switchfully.youcoach.session.session_service.session_mapper.SessionMapper;
-import com.switchfully.youcoach.user_management.user_domain.entity.Coach;
+import com.switchfully.youcoach.coach_management.coach_domain.entity.Coach;
 import com.switchfully.youcoach.user_management.user_domain.entity.Coachee;
 import com.switchfully.youcoach.user_management.user_domain.repository.CoachRepository;
 import com.switchfully.youcoach.user_management.user_domain.repository.CoacheeRepository;
