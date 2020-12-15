@@ -44,4 +44,28 @@ public class Coach {
     public Topic getTopicTwo() {
         return topicTwo;
     }
+
+    public int getCoachXp() {
+        return coachXp;
+    }
+
+    public void setCoachXp(int coachXp) {
+        this.coachXp = coachXp;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public void setAvailability(String availability) {
+        this.availability = availability;
+    }
+
+    public void setTopicOne(Topic topicOne) {
+        this.topicOne = topicOne;
+    }
+
+    public void setTopicTwo(Topic topicTwo) {
+        this.topicTwo = topicTwo;
+    }
 }

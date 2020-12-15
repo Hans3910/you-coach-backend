@@ -18,9 +18,9 @@ public class CoachController {
         this.coachService = coachService;
     }
 
-    @GetMapping(path = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/{coachId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public GetCoachDto getCoachById(@PathVariable String userId){
-        return coachService.getCoachById(userId);
+    public GetCoachDto getCoachById(@PathVariable String coachId){
+        return coachService.getCoachById(coachId);
     }
 }

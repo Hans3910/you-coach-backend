@@ -3,28 +3,28 @@ package com.switchfully.youcoach.coach_management.coach_service.coach_dto;
 import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDTO;
 
 public class GetCoachDto {
-    private String id;
-    private GetUserDTO getUserDto;
+    private String coachId;
+    private GetUserDTO userInfo;
     private int coachXp;
     private String introduction;
     private String availability;
-    private GetTopicDto getTopicDtoOne;
-    private GetTopicDto getTopicDtoTwo;
+    private GetTopicDto topicOne;
+    private GetTopicDto topicTwo;
 
-    public String getId() {
-        return id;
+    public String getCoachId() {
+        return coachId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCoachId(String coachId) {
+        this.coachId = coachId;
     }
 
-    public GetUserDTO getGetUserDto() {
-        return getUserDto;
+    public GetUserDTO getUserInfo() {
+        return userInfo;
     }
 
-    public void setGetUserDto(GetUserDTO getUserDto) {
-        this.getUserDto = getUserDto;
+    public void setUserInfo(GetUserDTO userInfo) {
+        this.userInfo = userInfo;
     }
 
     public int getCoachXp() {
@@ -51,19 +51,19 @@ public class GetCoachDto {
         this.availability = availability;
     }
 
-    public GetTopicDto getGetTopicDtoOne() {
-        return getTopicDtoOne;
+    public GetTopicDto getTopicOne() {
+        return topicOne;
     }
 
-    public void setGetTopicDtoOne(GetTopicDto getTopicDtoOne) {
-        this.getTopicDtoOne = getTopicDtoOne;
+    public void setTopicOne(GetTopicDto topicOne) {
+        this.topicOne = topicOne;
     }
 
-    public GetTopicDto getGetTopicDtoTwo() {
-        return getTopicDtoTwo;
+    public GetTopicDto getTopicTwo() {
+        return topicTwo;
     }
 
-    public void setGetTopicDtoTwo(GetTopicDto getTopicDtoTwo) {
-        this.getTopicDtoTwo = getTopicDtoTwo;
+    public void setTopicTwo(GetTopicDto topicTwo) {
+        this.topicTwo = topicTwo;
     }
 }

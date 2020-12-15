@@ -1,13 +1,22 @@
 package com.switchfully.youcoach.user_management.user_service.user_dto;
 
 public class GetCoacheeDTO {
-    private String id;
+    private String coacheeId;
+    private GetUserDTO userInfo;
 
-    public String getId() {
-        return id;
+    public String getCoacheeId() {
+        return coacheeId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCoacheeId(String coacheeId) {
+        this.coacheeId = coacheeId;
+    }
+
+    public GetUserDTO getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(GetUserDTO userInfo) {
+        this.userInfo = userInfo;
     }
 }

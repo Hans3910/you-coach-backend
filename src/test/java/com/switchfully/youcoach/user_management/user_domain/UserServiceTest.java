@@ -8,6 +8,7 @@ import com.switchfully.youcoach.exceptions.UsedEmailException;
 import com.switchfully.youcoach.exceptions.UserNotFoundException;
 import com.switchfully.youcoach.user_management.user_service.UserService;
 import com.switchfully.youcoach.user_management.user_service.user_dto.CreateUserDTO;
+import com.switchfully.youcoach.user_management.user_service.user_dto.GetCoacheeDTO;
 import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDTO;
 import com.switchfully.youcoach.user_management.user_service.user_mapper.CoacheeMapper;
 import com.switchfully.youcoach.user_management.user_service.user_mapper.UserMapper;
@@ -83,13 +84,15 @@ class UserServiceTest {
         getUserDTO.setFirstName(user1.getFirstName());
         getUserDTO.setLastName(user1.getLastName());
         getUserDTO.setEmail("john_doe@hotmail.com");
+        GetCoacheeDTO getCoacheeDTO = new GetCoacheeDTO();
+        getCoacheeDTO.setUserInfo(getUserDTO);
         UUID uuidToCheck = UUID.randomUUID();
         Mockito.when(userRepository.findById(uuidToCheck)).thenReturn(Optional.of(user1));
-        Mockito.when(coacheeMapper.convertCoacheeToGetCoacheeDTO(user1.getCoachee())).thenReturn(getUserDTO.getGetCoacheeDTO());
+        Mockito.when(coacheeMapper.convertCoacheeToGetCoacheeDTO(user1.getCoachee(), getUserDTO)).thenReturn(getCoacheeDTO);
         Mockito.when(userMapper.convertUserToGetUserDTO(user1)).thenReturn(getUserDTO);
         userService.getUserById(uuidToCheck.toString());
         Mockito.verify(userRepository).findById(uuidToCheck);
-        Mockito.verify(coacheeMapper).convertCoacheeToGetCoacheeDTO(user1.getCoachee());
+        Mockito.verify(coacheeMapper).convertCoacheeToGetCoacheeDTO(user1.getCoachee(), getUserDTO);
     }
 
     @Test

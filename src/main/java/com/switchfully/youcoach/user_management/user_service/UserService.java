@@ -1,6 +1,8 @@
 package com.switchfully.youcoach.user_management.user_service;
 
 
+import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetCoachDto;
+import com.switchfully.youcoach.user_management.user_domain.entity.Coachee;
 import com.switchfully.youcoach.user_management.user_domain.entity.Email;
 import com.switchfully.youcoach.user_management.user_domain.entity.User;
 import com.switchfully.youcoach.user_management.user_domain.repository.CoacheeRepository;
@@ -38,14 +40,12 @@ public class UserService {
         this.coacheeMapper = coacheeMapper;
     }
 
-    public GetUserDTO registerUser(CreateUserDTO createUserDTO) {
+    public GetCoacheeDTO registerUser(CreateUserDTO createUserDTO) {
         User user = userMapper.convertCreateUserDtoToUser(createUserDTO);
         isEmailUnique(user.getEmail());
         coacheeRepository.save(user.getCoachee());
-        GetUserDTO result = userMapper.convertUserToGetUserDTO(userRepository.save(user));
-        System.out.println(result);
-        result.setGetCoacheeDTO(coacheeMapper.convertCoacheeToGetCoacheeDTO(user.getCoachee()));
-        return result;
+        User result = userRepository.save(user);
+        return coacheeMapper.convertCoacheeToGetCoacheeDTO(user.getCoachee(), userMapper.convertUserToGetUserDTO(user));
     }
 
     public void isEmailUnique(Email email) {
@@ -54,14 +54,12 @@ public class UserService {
         }
     }
 
-    public GetUserDTO signIn(String email) {
+    public GetCoacheeDTO signIn(String email) {
         Email emailToCheck = new Email(email);
         Optional<User> optionalUser = userRepository.findByEmail(emailToCheck);
-
         if (optionalUser.isEmpty())
             throw new UserNotFoundException("User with email " + email + " does not exist in the application");
-
-        return userMapper.convertUserToGetUserDTO(optionalUser.get());
+        return coacheeMapper.convertCoacheeToGetCoacheeDTO(optionalUser.get().getCoachee(),userMapper.convertUserToGetUserDTO(optionalUser.get()));
     }
 
     public List<GetUserDTO> getAllUsers() {
@@ -70,18 +68,16 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public GetUserDTO getUserById(String id) {
-        Optional<User> user = userRepository.findById(UUID.fromString(id));
-        if (user.isEmpty()) {
+    public GetCoacheeDTO getUserById(String id) {
+        Optional<User> optionalUser = userRepository.findById(UUID.fromString(id));
+        if (optionalUser.isEmpty()) {
             throw new UserNotFoundException("This user does not exist.");
         } else {
-            GetUserDTO getUserDTO = userMapper.convertUserToGetUserDTO(user.get());
-            getUserDTO.setGetCoacheeDTO(coacheeMapper.convertCoacheeToGetCoacheeDTO(user.get().getCoachee()));
-            return getUserDTO;
+            return coacheeMapper.convertCoacheeToGetCoacheeDTO(optionalUser.get().getCoachee(),userMapper.convertUserToGetUserDTO(optionalUser.get()));
         }
     }
 
-    public GetUserDTO editUser(String id, GetUserDTO getUserDTO) {
+    public GetCoacheeDTO editUser(String id, GetUserDTO getUserDTO) {
         Optional<User> user = userRepository.findById(UUID.fromString(id));
         if (user.isEmpty()) {
             throw new UserNotFoundException("This user does not exist.");
@@ -91,10 +87,7 @@ public class UserService {
             userToEdit.setLastName(getUserDTO.getLastName());
             userToEdit.setEmail(new Email(getUserDTO.getEmail()));
             userToEdit.setPictureUrl(getUserDTO.getPictureUrl());
-            GetCoacheeDTO getCoacheeDTO = coacheeMapper.convertCoacheeToGetCoacheeDTO(userToEdit.getCoachee());
-            GetUserDTO result = userMapper.convertUserToGetUserDTO(userToEdit);
-            result.setGetCoacheeDTO(getCoacheeDTO);
-            return result;
+            return coacheeMapper.convertCoacheeToGetCoacheeDTO(userToEdit.getCoachee(),userMapper.convertUserToGetUserDTO(userToEdit));
         }
     }
 }

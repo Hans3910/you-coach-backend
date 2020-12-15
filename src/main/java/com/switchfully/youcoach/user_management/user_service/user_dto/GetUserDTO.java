@@ -1,30 +1,18 @@
 package com.switchfully.youcoach.user_management.user_service.user_dto;
 
-import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetCoachDto;
-
 public class GetUserDTO {
-    private String id;
+    private String userId;
     private String firstName;
     private String lastName;
     private String email;
-    private GetCoacheeDTO getCoacheeDTO;
-    private GetCoachDto getCoachDto;
     private String pictureUrl;
 
-    public GetCoachDto getGetCoachDto() {
-        return getCoachDto;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setGetCoachDto(GetCoachDto getCoachDto) {
-        this.getCoachDto = getCoachDto;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -49,14 +37,6 @@ public class GetUserDTO {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public GetCoacheeDTO getGetCoacheeDTO() {
-        return getCoacheeDTO;
-    }
-
-    public void setGetCoacheeDTO(GetCoacheeDTO getCoacheeDTO) {
-        this.getCoacheeDTO = getCoacheeDTO;
     }
 
     public String getPictureUrl() {
