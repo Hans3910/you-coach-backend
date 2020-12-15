@@ -10,7 +10,10 @@ public class CreateSessionDto {
         private String location;
         private String remarks;
 
-        public CreateSessionDto(String coacheeId, String coachId, String subject, String requestedDate, String requestedTime, String location, String remarks) {
+    public CreateSessionDto() {
+    }
+
+    public CreateSessionDto(String coacheeId, String coachId, String subject, String requestedDate, String requestedTime, String location, String remarks) {
             this.coacheeId = coacheeId;
             this.coachId = coachId;
             this.subject = subject;

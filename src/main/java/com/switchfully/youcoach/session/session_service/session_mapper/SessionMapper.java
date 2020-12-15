@@ -16,7 +16,7 @@ public class SessionMapper {
 
     public Session convertSessionDtoToSession(CreateSessionDto sessionDto, Coachee coachee, Coach coach){
         return new Session(coachee, coach, sessionDto.getSubject(), LocalDate.parse(sessionDto.getRequestedDate()),
-                LocalTime.parse(sessionDto.getRequestedTime()), sessionDto.getLocation(), sessionDto.getRemarks());
+                LocalTime.parse(sessionDto.getRequestedTime(), FormatUtil.getTimeFormat()), sessionDto.getLocation(), sessionDto.getRemarks());
     }
 
     public SessionDto convertSessionToSessionDto(Session session, User coachee, User coach){

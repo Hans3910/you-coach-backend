@@ -18,6 +18,9 @@ public class SessionDto {
         private String coacheeFullName;
         private String coachFullName;
 
+    public SessionDto() {
+    }
+
     public SessionDto(String id, String coacheeId, String coachId, String subject, String requestedDate, String requestedTime, String location, String remarks, String coacheeFullName, String coachFullName) {
         this.id = id;
         this.coacheeId = coacheeId;

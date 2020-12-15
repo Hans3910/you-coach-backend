@@ -21,6 +21,7 @@ public class SessionController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void createSession(@RequestBody CreateSessionDto createSessionDto){
+        System.out.println(createSessionDto);
         sessionService.createSession(createSessionDto);
     }
 
