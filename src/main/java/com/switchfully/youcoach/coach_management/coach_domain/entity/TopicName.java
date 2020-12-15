@@ -11,6 +11,13 @@ public class TopicName {
     @Id
     private String name;
 
+    public TopicName() {
+    }
+
+    public TopicName(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
