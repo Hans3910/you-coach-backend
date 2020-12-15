@@ -13,6 +13,7 @@ public class CoachMapper {
         GetCoachDto getCoachDto = new GetCoachDto();
         getCoachDto.setCoachXp(coach.getCoachXp());
         getCoachDto.setAvailability(coach.getAvailability());
+        getCoachDto.setIntroduction(coach.getIntroduction());
         getCoachDto.setCoachId(coach.getId().toString());
         getCoachDto.setTopicOne(convertTopicToDto(coach.getTopicOne()));
         getCoachDto.setTopicTwo(convertTopicToDto(coach.getTopicTwo()));
