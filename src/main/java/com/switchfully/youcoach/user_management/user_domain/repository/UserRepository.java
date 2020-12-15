@@ -11,4 +11,6 @@ public interface UserRepository extends CrudRepository<User, UUID> {
     public boolean existsDistinctByEmail(Email email);
 
     public Optional<User> findByEmail(Email email);
+
+    public Optional<User> findByCoach_Id(UUID coachId);
 }

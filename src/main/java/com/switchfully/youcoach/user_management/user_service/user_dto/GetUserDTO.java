@@ -1,12 +1,23 @@
 package com.switchfully.youcoach.user_management.user_service.user_dto;
 
+import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetCoachDto;
+
 public class GetUserDTO {
     private String id;
     private String firstName;
     private String lastName;
     private String email;
     private GetCoacheeDTO getCoacheeDTO;
+    private GetCoachDto getCoachDto;
     private String pictureUrl;
+
+    public GetCoachDto getGetCoachDto() {
+        return getCoachDto;
+    }
+
+    public void setGetCoachDto(GetCoachDto getCoachDto) {
+        this.getCoachDto = getCoachDto;
+    }
 
     public String getId() {
         return id;
