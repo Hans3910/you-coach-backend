@@ -103,4 +103,8 @@ public class User {
     public Coach getCoach() {
         return coach;
     }
+
+    public void setCoach(Coach coach) {
+        this.coach = coach;
+    }
 }

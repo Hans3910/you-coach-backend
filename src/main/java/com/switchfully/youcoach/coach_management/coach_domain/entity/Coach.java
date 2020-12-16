@@ -25,6 +25,14 @@ public class Coach {
     public Coach() {
     }
 
+    public Coach(int coachXp, String introduction, String availability, Topic topicOne, Topic topicTwo) {
+        this.coachXp = coachXp;
+        this.introduction = introduction;
+        this.availability = availability;
+        this.topicOne = topicOne;
+        this.topicTwo = topicTwo;
+    }
+
     public UUID getId() {
         return id;
     }
