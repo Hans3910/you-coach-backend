@@ -3,10 +3,7 @@ package com.switchfully.youcoach.coach_management.coach_service.coach_mapper;
 import com.switchfully.youcoach.coach_management.coach_domain.entity.Coach;
 import com.switchfully.youcoach.coach_management.coach_domain.entity.Topic;
 import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetCoachDto;
-import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetCoachOverviewDto;
 import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetTopicDto;
-import com.switchfully.youcoach.user_management.user_domain.entity.User;
-import com.switchfully.youcoach.user_management.user_service.user_dto.GetCoacheeDto;
 import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDto;
 import org.springframework.stereotype.Component;
 
@@ -39,12 +36,6 @@ public class CoachMapper {
         return getTopicDto;
     }
 
-    public GetCoachOverviewDto convertUserToCoachOverviewDto(User user, GetUserDto getUserDto){
-        GetCoachOverviewDto getCoachOverviewDto = new GetCoachOverviewDto();
-        getCoachOverviewDto.setTopicOne(convertTopicToDto(user.getCoach().getTopicOne()));
-        getCoachOverviewDto.setTopicTwo(convertTopicToDto(user.getCoach().getTopicTwo()));
-        getCoachOverviewDto.setGetUserDto(getUserDto);
-        return getCoachOverviewDto;
-    }
+
 
 }

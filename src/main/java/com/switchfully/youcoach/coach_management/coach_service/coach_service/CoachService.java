@@ -1,12 +1,10 @@
 package com.switchfully.youcoach.coach_management.coach_service.coach_service;
 
-import com.switchfully.youcoach.coach_management.coach_domain.entity.Coach;
 import com.switchfully.youcoach.coach_management.coach_domain.entity.Topic;
 import com.switchfully.youcoach.coach_management.coach_domain.entity.TopicName;
 import com.switchfully.youcoach.coach_management.coach_domain.repository.TopicNameRepository;
 import com.switchfully.youcoach.coach_management.coach_domain.repository.TopicRepository;
 import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetCoachDto;
-import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetCoachOverviewDto;
 import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetTopicDto;
 import com.switchfully.youcoach.coach_management.coach_service.coach_mapper.CoachMapper;
 import com.switchfully.youcoach.exceptions.UserNotFoundException;
@@ -16,7 +14,6 @@ import com.switchfully.youcoach.user_management.user_domain.repository.UserRepos
 import com.switchfully.youcoach.user_management.user_service.UserService;
 import com.switchfully.youcoach.user_management.user_service.user_mapper.UserMapper;
 
-import org.checkerframework.checker.nullness.Opt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -59,21 +55,10 @@ public class CoachService {
     }
 
     public List<GetCoachDto> getAllCoaches(){
-        Iterable<User> users = userRepository.findAll();
-
-        List<User> listUsers = new ArrayList<>();
-        for (User user : users) {
-            listUsers.add(user);
-        }
-
-        List<User> coaches = listUsers.stream().filter(user -> user.getCoach() != null).collect(Collectors.toList());
-        System.out.println(coaches);
-        List<Coach> listofcoaches = coaches.stream().map(User::getCoach).collect(Collectors.toList());
-        System.out.println(listofcoaches);
-
+        List<User> coaches = userRepository.findAllByCoachIsNotNull();
         List<GetCoachDto> coachDtos =  new ArrayList<>();
-        for (User user : coaches) {
-            coachDtos.add(coachMapper.convertCoachToGetCoachDto(user.getCoach(), userMapper.convertUserToGetUserDTO(user)));
+        for (User coach : coaches) {
+            coachDtos.add(coachMapper.convertCoachToGetCoachDto(coach.getCoach(), userMapper.convertUserToGetUserDTO(coach)));
         }
         return coachDtos;
     }
