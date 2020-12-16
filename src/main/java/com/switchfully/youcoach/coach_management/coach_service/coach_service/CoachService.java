@@ -1,9 +1,11 @@
 package com.switchfully.youcoach.coach_management.coach_service.coach_service;
 
+import com.switchfully.youcoach.coach_management.coach_domain.entity.Coach;
 import com.switchfully.youcoach.coach_management.coach_domain.entity.Topic;
 import com.switchfully.youcoach.coach_management.coach_domain.entity.TopicName;
 import com.switchfully.youcoach.coach_management.coach_domain.repository.TopicNameRepository;
 import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetCoachDto;
+import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetCoachOverviewDto;
 import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetTopicDto;
 import com.switchfully.youcoach.coach_management.coach_service.coach_mapper.CoachMapper;
 import com.switchfully.youcoach.exceptions.UserNotFoundException;
@@ -18,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 

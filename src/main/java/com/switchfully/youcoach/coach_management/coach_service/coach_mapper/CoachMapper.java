@@ -3,13 +3,15 @@ package com.switchfully.youcoach.coach_management.coach_service.coach_mapper;
 import com.switchfully.youcoach.coach_management.coach_domain.entity.Coach;
 import com.switchfully.youcoach.coach_management.coach_domain.entity.Topic;
 import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetCoachDto;
+import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetCoachOverviewDto;
 import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetTopicDto;
-import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDTO;
+import com.switchfully.youcoach.user_management.user_domain.entity.User;
+import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDto;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CoachMapper {
-    public GetCoachDto convertCoachToGetCoachDto(Coach coach, GetUserDTO getUserDTO){
+    public GetCoachDto convertCoachToGetCoachDto(Coach coach, GetUserDto getUserDTO){
         GetCoachDto getCoachDto = new GetCoachDto();
         getCoachDto.setCoachXp(coach.getCoachXp());
         getCoachDto.setAvailability(coach.getAvailability());
@@ -33,5 +35,13 @@ public class CoachMapper {
         getTopicDto.setSixthGrade(topic.isSixthGrade());
         getTopicDto.setSeventhGrade(topic.isSeventhGrade());
         return getTopicDto;
+    }
+
+    public GetCoachOverviewDto convertUserToCoachOverviewDto(User user, GetUserDto getUserDto){
+        GetCoachOverviewDto getCoachOverviewDto = new GetCoachOverviewDto();
+        getCoachOverviewDto.setTopicOne(convertTopicToDto(user.getCoach().getTopicOne()));
+        getCoachOverviewDto.setTopicTwo(convertTopicToDto(user.getCoach().getTopicTwo()));
+        getCoachOverviewDto.setGetUserDto(getUserDto);
+        return getCoachOverviewDto;
     }
 }

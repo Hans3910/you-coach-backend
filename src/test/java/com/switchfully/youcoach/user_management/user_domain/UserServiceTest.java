@@ -7,9 +7,9 @@ import com.switchfully.youcoach.user_management.user_domain.repository.UserRepos
 import com.switchfully.youcoach.exceptions.UsedEmailException;
 import com.switchfully.youcoach.exceptions.UserNotFoundException;
 import com.switchfully.youcoach.user_management.user_service.UserService;
-import com.switchfully.youcoach.user_management.user_service.user_dto.CreateUserDTO;
-import com.switchfully.youcoach.user_management.user_service.user_dto.GetCoacheeDTO;
-import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDTO;
+import com.switchfully.youcoach.user_management.user_service.user_dto.CreateUserDto;
+import com.switchfully.youcoach.user_management.user_service.user_dto.GetCoacheeDto;
+import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDto;
 import com.switchfully.youcoach.user_management.user_service.user_mapper.CoacheeMapper;
 import com.switchfully.youcoach.user_management.user_service.user_mapper.UserMapper;
 import org.junit.jupiter.api.Assertions;
@@ -40,9 +40,9 @@ class UserServiceTest {
     @Test
     void givenNewUser_ItWillBeRegisteredIfEmailIsDistinct() {
         User user1 = new User("John", "Doe", new Email("john_doe@hotmail.com"));
-        CreateUserDTO createUserDTO1 = new CreateUserDTO("John", "Doe", "john_doe@hotmail.com");
-        Mockito.when(userMapper.convertCreateUserDtoToUser(createUserDTO1)).thenReturn(user1);
-        userService.registerUser(createUserDTO1);
+        CreateUserDto createUserDto1 = new CreateUserDto("John", "Doe", "john_doe@hotmail.com");
+        Mockito.when(userMapper.convertCreateUserDtoToUser(createUserDto1)).thenReturn(user1);
+        userService.registerUser(createUserDto1);
         Mockito.verify(userRepository).save(user1);
     }
 
@@ -57,7 +57,7 @@ class UserServiceTest {
     void givenEmail_IfUserExists_ThenIGetAUserDto() {
         User user1 = new User("John", "Doe", new Email("john_doe@hotmail.com"));
 
-        GetUserDTO getUserDTO = new GetUserDTO();
+        GetUserDto getUserDTO = new GetUserDto();
         getUserDTO.setFirstName(user1.getFirstName());
         getUserDTO.setLastName(user1.getLastName());
         getUserDTO.setEmail("john_doe@hotmail.com");
@@ -80,11 +80,11 @@ class UserServiceTest {
     @Test
     void givenId_IfUserExists_ThenIGetAUserDto() {
         User user1 = new User("John", "Doe", new Email("john_doe@hotmail.com"));
-        GetUserDTO getUserDTO = new GetUserDTO();
+        GetUserDto getUserDTO = new GetUserDto();
         getUserDTO.setFirstName(user1.getFirstName());
         getUserDTO.setLastName(user1.getLastName());
         getUserDTO.setEmail("john_doe@hotmail.com");
-        GetCoacheeDTO getCoacheeDTO = new GetCoacheeDTO();
+        GetCoacheeDto getCoacheeDTO = new GetCoacheeDto();
         getCoacheeDTO.setUserInfo(getUserDTO);
         UUID uuidToCheck = UUID.randomUUID();
         Mockito.when(userRepository.findById(uuidToCheck)).thenReturn(Optional.of(user1));

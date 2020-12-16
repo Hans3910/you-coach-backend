@@ -7,9 +7,9 @@ import com.switchfully.youcoach.user_management.user_domain.repository.CoacheeRe
 import com.switchfully.youcoach.user_management.user_domain.repository.UserRepository;
 import com.switchfully.youcoach.exceptions.UsedEmailException;
 import com.switchfully.youcoach.exceptions.UserNotFoundException;
-import com.switchfully.youcoach.user_management.user_service.user_dto.CreateUserDTO;
-import com.switchfully.youcoach.user_management.user_service.user_dto.GetCoacheeDTO;
-import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDTO;
+import com.switchfully.youcoach.user_management.user_service.user_dto.CreateUserDto;
+import com.switchfully.youcoach.user_management.user_service.user_dto.GetCoacheeDto;
+import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDto;
 import com.switchfully.youcoach.user_management.user_service.user_mapper.CoacheeMapper;
 import com.switchfully.youcoach.user_management.user_service.user_mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +38,7 @@ public class UserService {
         this.coacheeMapper = coacheeMapper;
     }
 
-    public GetCoacheeDTO registerUser(CreateUserDTO createUserDTO) {
+    public GetCoacheeDto registerUser(CreateUserDto createUserDTO) {
         User user = userMapper.convertCreateUserDtoToUser(createUserDTO);
         isEmailUnique(user.getEmail());
         coacheeRepository.save(user.getCoachee());
@@ -52,7 +52,7 @@ public class UserService {
         }
     }
 
-    public GetCoacheeDTO signIn(String email) {
+    public GetCoacheeDto signIn(String email) {
         Email emailToCheck = new Email(email);
         Optional<User> optionalUser = userRepository.findByEmail(emailToCheck);
         if (optionalUser.isEmpty())
@@ -60,13 +60,13 @@ public class UserService {
         return coacheeMapper.convertCoacheeToGetCoacheeDTO(optionalUser.get().getCoachee(),userMapper.convertUserToGetUserDTO(optionalUser.get()));
     }
 
-    public List<GetUserDTO> getAllUsers() {
+    public List<GetUserDto> getAllUsers() {
         return StreamSupport.stream(userRepository.findAll().spliterator(), false)
                 .map(user -> userMapper.convertUserToGetUserDTO(user))
                 .collect(Collectors.toList());
     }
 
-    public GetCoacheeDTO getUserById(String id) {
+    public GetCoacheeDto getUserById(String id) {
         Optional<User> optionalUser = userRepository.findById(UUID.fromString(id));
         if (optionalUser.isEmpty()) {
             throw new UserNotFoundException("This user does not exist.");
@@ -75,7 +75,7 @@ public class UserService {
         }
     }
 
-    public GetCoacheeDTO editUser(String id, GetUserDTO getUserDTO) {
+    public GetCoacheeDto editUser(String id, GetUserDto getUserDTO) {
         Optional<User> user = userRepository.findById(UUID.fromString(id));
         if (user.isEmpty()) {
             throw new UserNotFoundException("This user does not exist.");

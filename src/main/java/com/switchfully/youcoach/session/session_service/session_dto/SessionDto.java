@@ -1,10 +1,5 @@
 package com.switchfully.youcoach.session.session_service.session_dto;
 
-import com.switchfully.youcoach.user_management.user_service.user_dto.GetCoacheeDTO;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 public class SessionDto {
 
         private String id;
