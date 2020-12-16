@@ -3,8 +3,12 @@ package com.switchfully.youcoach.user_management.user_service.user_mapper;
 import com.switchfully.youcoach.user_management.user_domain.entity.Email;
 import com.switchfully.youcoach.user_management.user_domain.entity.User;
 import com.switchfully.youcoach.user_management.user_service.user_dto.CreateUserDto;
+import com.switchfully.youcoach.user_management.user_service.user_dto.GetCoacheeDto;
 import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDto;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class UserMapper {
@@ -22,4 +26,6 @@ public class UserMapper {
         getUserDTO.setPictureUrl(user.getPictureUrl());
         return getUserDTO;
     }
+
+
 }
