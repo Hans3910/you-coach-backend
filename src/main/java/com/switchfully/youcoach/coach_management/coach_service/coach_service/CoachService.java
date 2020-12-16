@@ -1,10 +1,12 @@
 package com.switchfully.youcoach.coach_management.coach_service.coach_service;
 
+import com.switchfully.youcoach.coach_management.coach_domain.entity.Coach;
 import com.switchfully.youcoach.coach_management.coach_domain.entity.Topic;
 import com.switchfully.youcoach.coach_management.coach_domain.entity.TopicName;
 import com.switchfully.youcoach.coach_management.coach_domain.repository.TopicNameRepository;
 import com.switchfully.youcoach.coach_management.coach_domain.repository.TopicRepository;
 import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetCoachDto;
+import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetCoachOverviewDto;
 import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetTopicDto;
 import com.switchfully.youcoach.coach_management.coach_service.coach_mapper.CoachMapper;
 import com.switchfully.youcoach.exceptions.UserNotFoundException;
@@ -19,8 +21,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -52,6 +57,27 @@ public class CoachService {
         }
         return coachMapper.convertCoachToGetCoachDto(user.get().getCoach(), userMapper.convertUserToGetUserDTO(user.get()));
     }
+
+    public List<GetCoachDto> getAllCoaches(){
+        Iterable<User> users = userRepository.findAll();
+
+        List<User> listUsers = new ArrayList<>();
+        for (User user : users) {
+            listUsers.add(user);
+        }
+
+        List<User> coaches = listUsers.stream().filter(user -> user.getCoach() != null).collect(Collectors.toList());
+        System.out.println(coaches);
+        List<Coach> listofcoaches = coaches.stream().map(User::getCoach).collect(Collectors.toList());
+        System.out.println(listofcoaches);
+
+        List<GetCoachDto> coachDtos =  new ArrayList<>();
+        for (User user : coaches) {
+            coachDtos.add(coachMapper.convertCoachToGetCoachDto(user.getCoach(), userMapper.convertUserToGetUserDTO(user)));
+        }
+        return coachDtos;
+    }
+
 
     public GetCoachDto editCoach(String coachId, GetCoachDto getCoachDto) {
         Optional<User> optionalUser = userRepository.findByCoach_Id(UUID.fromString(coachId));

@@ -1,10 +1,10 @@
 package com.switchfully.youcoach.coach_management.coach_service.coach_dto;
 
-import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDTO;
+import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDto;
 
 public class GetCoachDto {
     private String coachId;
-    private GetUserDTO userInfo;
+    private GetUserDto userInfo;
     private int coachXp;
     private String introduction;
     private String availability;
@@ -19,11 +19,11 @@ public class GetCoachDto {
         this.coachId = coachId;
     }
 
-    public GetUserDTO getUserInfo() {
+    public GetUserDto getUserInfo() {
         return userInfo;
     }
 
-    public void setUserInfo(GetUserDTO userInfo) {
+    public void setUserInfo(GetUserDto userInfo) {
         this.userInfo = userInfo;
     }
 

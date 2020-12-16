@@ -7,7 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
+import java.util.List;
+
 
 @RestController
 @RequestMapping(path = "/coach")
@@ -28,5 +29,11 @@ public class CoachController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public GetCoachDto editCoach(@PathVariable String coachId, @RequestBody GetCoachDto getCoachDto) {
         return coachService.editCoach(coachId, getCoachDto);
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public List<GetCoachDto> getAllCoaches(){
+        return coachService.getAllCoaches();
     }
 }
