@@ -5,6 +5,7 @@ import com.switchfully.youcoach.coach_management.coach_domain.entity.TopicName;
 import com.switchfully.youcoach.coach_management.coach_domain.repository.TopicNameRepository;
 import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetCoachDto;
 import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetTopicDto;
+import com.switchfully.youcoach.coach_management.coach_service.coach_mapper.CoachMapper;
 import com.switchfully.youcoach.exceptions.UserNotFoundException;
 import com.switchfully.youcoach.user_management.user_domain.entity.User;
 import com.switchfully.youcoach.user_management.user_domain.repository.CoachRepository;
@@ -77,9 +78,8 @@ public class CoachService {
 
         }
 
-        /*
-        update coach info
-         */
+        user.getCoach().setIntroduction(getCoachDto.getIntroduction());
+        user.getCoach().setAvailability(getCoachDto.getAvailability());
 
 
         return coachMapper.convertCoachToGetCoachDto(user.getCoach(), userMapper.convertUserToGetUserDTO(user));

@@ -1,6 +1,7 @@
 package com.switchfully.youcoach.user_management.user_domain.entity;
 
 import com.switchfully.youcoach.coach_management.coach_domain.entity.Coach;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.UUID;

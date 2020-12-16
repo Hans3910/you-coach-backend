@@ -1,8 +1,6 @@
 package com.switchfully.youcoach.user_management.user_service;
 
 
-import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetCoachDto;
-import com.switchfully.youcoach.user_management.user_domain.entity.Coachee;
 import com.switchfully.youcoach.user_management.user_domain.entity.Email;
 import com.switchfully.youcoach.user_management.user_domain.entity.User;
 import com.switchfully.youcoach.user_management.user_domain.repository.CoacheeRepository;
@@ -45,7 +43,7 @@ public class UserService {
         isEmailUnique(user.getEmail());
         coacheeRepository.save(user.getCoachee());
         User result = userRepository.save(user);
-        return coacheeMapper.convertCoacheeToGetCoacheeDTO(user.getCoachee(), userMapper.convertUserToGetUserDTO(user));
+        return coacheeMapper.convertCoacheeToGetCoacheeDTO(user.getCoachee(), userMapper.convertUserToGetUserDTO(result));
     }
 
     public void isEmailUnique(Email email) {

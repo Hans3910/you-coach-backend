@@ -14,3 +14,4 @@ public interface UserRepository extends CrudRepository<User, UUID> {
 
     public Optional<User> findByCoach_Id(UUID coachId);
 }
+

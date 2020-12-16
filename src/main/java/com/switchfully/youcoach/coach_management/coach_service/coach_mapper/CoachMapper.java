@@ -1,4 +1,4 @@
-package com.switchfully.youcoach.coach_management.coach_service.coach_service;
+package com.switchfully.youcoach.coach_management.coach_service.coach_mapper;
 
 import com.switchfully.youcoach.coach_management.coach_domain.entity.Coach;
 import com.switchfully.youcoach.coach_management.coach_domain.entity.Topic;
