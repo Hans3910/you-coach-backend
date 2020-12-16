@@ -3,6 +3,7 @@ package com.switchfully.youcoach.coach_management.coach_service.coach_service;
 import com.switchfully.youcoach.coach_management.coach_domain.entity.Topic;
 import com.switchfully.youcoach.coach_management.coach_domain.entity.TopicName;
 import com.switchfully.youcoach.coach_management.coach_domain.repository.TopicNameRepository;
+import com.switchfully.youcoach.coach_management.coach_domain.repository.TopicRepository;
 import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetCoachDto;
 import com.switchfully.youcoach.coach_management.coach_service.coach_dto.GetTopicDto;
 import com.switchfully.youcoach.coach_management.coach_service.coach_mapper.CoachMapper;
@@ -30,15 +31,18 @@ public class CoachService {
     private CoachMapper coachMapper;
     private CoachRepository coachRepository;
     private TopicNameRepository topicNameRepository;
+    private TopicRepository topicRepository;
 
     @Autowired
-    public CoachService(UserService userService, UserRepository userRepository, UserMapper userMapper, CoachMapper coachMapper, CoachRepository coachRepository, TopicNameRepository topicNameRepository) {
+    public CoachService(UserService userService, UserRepository userRepository, UserMapper userMapper, CoachMapper coachMapper,
+                        CoachRepository coachRepository, TopicNameRepository topicNameRepository, TopicRepository topicRepository) {
         this.userService = userService;
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.coachMapper = coachMapper;
         this.coachRepository = coachRepository;
         this.topicNameRepository = topicNameRepository;
+        this.topicRepository = topicRepository;
     }
 
     public GetCoachDto getCoachById(String coachId) {
@@ -57,7 +61,7 @@ public class CoachService {
 
 
         if (user.getCoach().getTopicOne() != null || !getCoachDto.getTopicOne().getName().equals("")) {
-            if (user.getCoach().getTopicOne() != null) {
+            if (user.getCoach().getTopicOne() != null && !getCoachDto.getTopicTwo().getName().equals("")) {
                 updateTopic(user.getCoach().getTopicOne(), getCoachDto.getTopicOne());
             } else if (user.getCoach().getTopicOne() == null && !getCoachDto.getTopicOne().getName().equals("")) {
                 updateTopic(new Topic(), getCoachDto.getTopicOne());
@@ -71,7 +75,7 @@ public class CoachService {
             if (user.getCoach().getTopicTwo() != null && !getCoachDto.getTopicTwo().getName().equals("")) {
                 updateTopic(user.getCoach().getTopicTwo(), getCoachDto.getTopicTwo());
             } else if (user.getCoach().getTopicTwo() == null && !getCoachDto.getTopicTwo().getName().equals("")) {
-                updateTopic(new Topic(), getCoachDto.getTopicTwo());
+                user.getCoach().setTopicTwo(updateTopic(new Topic(), getCoachDto.getTopicTwo()));
             } else if (user.getCoach().getTopicTwo() != null && getCoachDto.getTopicTwo().getName().equals("")) {
                 user.getCoach().setTopicTwo(null);
             }
@@ -101,8 +105,6 @@ public class CoachService {
         topic.setFifthGrade(topicDto.isFifthGrade());
         topic.setSixthGrade(topicDto.isSixthGrade());
         topic.setSeventhGrade(topicDto.isSeventhGrade());
-
-
-        return topic;
+        return topicRepository.save(topic);
     }
 }

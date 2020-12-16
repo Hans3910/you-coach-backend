@@ -11,6 +11,27 @@ public class GetTopicDto {
     private boolean isSixthGrade;
     private boolean isSeventhGrade;
 
+    public GetTopicDto() {
+        this.name = "";
+        this.topicId = "";
+    }
+
+
+    @Override
+    public String toString() {
+        return "GetTopicDto{" +
+                "topicId='" + topicId + '\'' +
+                ", name='" + name + '\'' +
+                ", isFirstGrade=" + isFirstGrade +
+                ", isSecondGrade=" + isSecondGrade +
+                ", isThirdGrade=" + isThirdGrade +
+                ", isFourthGrade=" + isFourthGrade +
+                ", isFifthGrade=" + isFifthGrade +
+                ", isSixthGrade=" + isSixthGrade +
+                ", isSeventhGrade=" + isSeventhGrade +
+                '}';
+    }
+
     public String getTopicId() {
         return topicId;
     }
