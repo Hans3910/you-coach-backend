@@ -25,22 +25,18 @@ import java.util.UUID;
 @Service
 @Transactional
 public class CoachService {
-    private UserService userService;
     private UserRepository userRepository;
     private UserMapper userMapper;
     private CoachMapper coachMapper;
-    private CoachRepository coachRepository;
     private TopicNameRepository topicNameRepository;
     private TopicRepository topicRepository;
 
     @Autowired
-    public CoachService(UserService userService, UserRepository userRepository, UserMapper userMapper, CoachMapper coachMapper,
-                        CoachRepository coachRepository, TopicNameRepository topicNameRepository, TopicRepository topicRepository) {
-        this.userService = userService;
+    public CoachService(UserRepository userRepository, UserMapper userMapper, CoachMapper coachMapper,
+                        TopicNameRepository topicNameRepository, TopicRepository topicRepository) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.coachMapper = coachMapper;
-        this.coachRepository = coachRepository;
         this.topicNameRepository = topicNameRepository;
         this.topicRepository = topicRepository;
     }
@@ -64,7 +60,7 @@ public class CoachService {
             if (user.getCoach().getTopicOne() != null && !getCoachDto.getTopicTwo().getName().equals("")) {
                 updateTopic(user.getCoach().getTopicOne(), getCoachDto.getTopicOne());
             } else if (user.getCoach().getTopicOne() == null && !getCoachDto.getTopicOne().getName().equals("")) {
-                updateTopic(new Topic(), getCoachDto.getTopicOne());
+                user.getCoach().setTopicOne(updateTopic(new Topic(), getCoachDto.getTopicOne()));
             } else if (user.getCoach().getTopicOne() != null && getCoachDto.getTopicOne().getName().equals("")) {
                 user.getCoach().setTopicOne(null);
             }
@@ -89,7 +85,7 @@ public class CoachService {
         return coachMapper.convertCoachToGetCoachDto(user.getCoach(), userMapper.convertUserToGetUserDTO(user));
     }
 
-    private Topic updateTopic(Topic topic, GetTopicDto topicDto) {
+   public Topic updateTopic(Topic topic, GetTopicDto topicDto) {
         Optional<TopicName> topicName = topicNameRepository.findById(topicDto.getName());
 
         if (topicName.isEmpty()) {
