@@ -66,4 +66,17 @@ public class GetCoachDto {
     public void setTopicTwo(GetTopicDto topicTwo) {
         this.topicTwo = topicTwo;
     }
+
+    @Override
+    public String toString() {
+        return "GetCoachDto{" +
+                "coachId='" + coachId + '\'' +
+                ", userInfo=" + userInfo +
+                ", coachXp=" + coachXp +
+                ", introduction='" + introduction + '\'' +
+                ", availability='" + availability + '\'' +
+                ", topicOne=" + topicOne +
+                ", topicTwo=" + topicTwo +
+                '}';
+    }
 }

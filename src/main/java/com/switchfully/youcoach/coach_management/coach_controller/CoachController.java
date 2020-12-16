@@ -24,7 +24,7 @@ public class CoachController {
         return coachService.getCoachById(coachId);
     }
 
-    @PostMapping(path = "/{coachId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/{coachId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.ACCEPTED)
     public GetCoachDto editCoach(@PathVariable String coachId, @RequestBody GetCoachDto getCoachDto) {
         return coachService.editCoach(coachId, getCoachDto);
