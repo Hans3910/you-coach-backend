@@ -16,11 +16,6 @@ class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
-    @Test
-    public void blancTest() {
-
-    }
-
 
     @Test
     @Sql("users.sql")
@@ -29,5 +24,27 @@ class UserRepositoryTest {
 
         Assertions.assertTrue(optionalUser.isPresent());
     }
+
+    @Test
+    @Sql("users.sql")
+    public void givenIncorrectUserEmail_NoUserIsFoundInTheDatabase() {
+        Optional<User> optionalUser = userRepository.findByEmail(new Email("jeroenDeMan@mail.com"));
+
+        Assertions.assertTrue(optionalUser.isEmpty());
+    }
+
+    @Test
+    @Sql("users.sql")
+    public void givenAnExistingMail_expectedThatEmailAlreadyExist() {
+        Assertions.assertTrue(userRepository.existsDistinctByEmail(new Email("jeroen@admin.com")));
+    }
+
+    @Test
+    @Sql("users.sql")
+    public void givenAnNewMail_expectedThatEmailDoesNotExist() {
+        Assertions.assertFalse(userRepository.existsDistinctByEmail(new Email("jeroenDeMan@admin.com")));
+    }
+
+
 
 }
