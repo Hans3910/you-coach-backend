@@ -17,6 +17,7 @@ import com.switchfully.youcoach.user_management.user_service.user_mapper.UserMap
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
@@ -52,6 +53,9 @@ class CoachServiceTest {
 
     }
 
+    @InjectMocks
+    CoachService coachServiceMocking;
+
     @Test
     void whenGivenId_GetTheRightCoach() {
         User user = new User("John", "Doe", new Email("john_doe@hotmail.com"));
@@ -79,16 +83,25 @@ class CoachServiceTest {
 //        UUID newId = UUID.randomUUID();
 //        User user = new User("John", "Doe", new Email("john_doe@hotmail.com"));
 //        Coach coach = new Coach(2, "intro", "available", topic1, topic2);
+//        user.setCoach(coach);
+//
+//        CoachService mockCoachService = Mockito.mock(CoachService.class);
+//
 //        GetCoachDto getCoachDto = new GetCoachDto();
 //        getCoachDto.setTopicOne(getTopicDto1);
 //        getCoachDto.setTopicTwo(getTopicDto2);
-////        Mockito.when(getCoachDto.getTopicOne().getName()).thenReturn("topic1");
-////        Mockito.when(getCoachDto.getTopicTwo().getName()).thenReturn("topic2");
-//        GetUserDTO getUserDTO = Mockito.mock(GetUserDTO.class);
-//        user.setCoach(coach);
+//        Mockito.when(getCoachDto.getTopicOne().getName()).thenReturn("topic1");
+//        Mockito.when(getCoachDto.getTopicTwo().getName()).thenReturn("topic2");
+//        GetUserDto getUserDTO = Mockito.mock(GetUserDto.class);
+//
+//
+//
 //        Mockito.when(userRepository.findByCoach_Id(newId)).thenReturn(Optional.of(user));
-//        coachService.editCoach(newId.toString(),getCoachDto);
-////        Mockito.verify(coachService,Mockito.times(1)).updateTopic(topic1,getTopicDto1);
+//        mockCoachService.editCoach(newId.toString(), getCoachDto);
+////        coachService.editCoach(newId.toString(),getCoachDto);
+////        Mockito.verify(mockCoachService).editCoach(newId.toString(), getCoachDto);
+//        Mockito.verify(mockCoachService).updateTopic(topic1,getTopicDto1);
+//
 //
 //    }
 
