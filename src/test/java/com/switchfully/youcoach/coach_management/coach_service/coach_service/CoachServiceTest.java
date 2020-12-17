@@ -78,32 +78,28 @@ class CoachServiceTest {
         Assertions.assertThrows(UserNotFoundException.class, () -> coachService.getCoachById(newId.toString()));
     }
 
-//    @Test
-//    void whenAdjustingTwoTopics_ChangeTopics() {
-//        UUID newId = UUID.randomUUID();
-//        User user = new User("John", "Doe", new Email("john_doe@hotmail.com"));
-//        Coach coach = new Coach(2, "intro", "available", topic1, topic2);
-//        user.setCoach(coach);
-//
-//        CoachService mockCoachService = Mockito.mock(CoachService.class);
-//
-//        GetCoachDto getCoachDto = new GetCoachDto();
-//        getCoachDto.setTopicOne(getTopicDto1);
-//        getCoachDto.setTopicTwo(getTopicDto2);
-//        Mockito.when(getCoachDto.getTopicOne().getName()).thenReturn("topic1");
-//        Mockito.when(getCoachDto.getTopicTwo().getName()).thenReturn("topic2");
-//        GetUserDto getUserDTO = Mockito.mock(GetUserDto.class);
-//
-//
-//
-//        Mockito.when(userRepository.findByCoach_Id(newId)).thenReturn(Optional.of(user));
-//        mockCoachService.editCoach(newId.toString(), getCoachDto);
-////        coachService.editCoach(newId.toString(),getCoachDto);
-////        Mockito.verify(mockCoachService).editCoach(newId.toString(), getCoachDto);
-//        Mockito.verify(mockCoachService).updateTopic(topic1,getTopicDto1);
-//
-//
-//    }
+    @Test
+    void whenAdjustingTwoTopics_ChangeTopics() {
+        UUID newId = UUID.randomUUID();
+        User user = new User("John", "Doe", new Email("john_doe@hotmail.com"));
+        Coach coach = new Coach(2, "intro", "available", topic1, topic2);
+        user.setCoach(coach);
+
+
+        GetCoachDto getCoachDto = new GetCoachDto();
+        getCoachDto.setTopicOne(getTopicDto1);
+        getCoachDto.setTopicTwo(getTopicDto2);
+        Mockito.when(getCoachDto.getTopicOne().getName()).thenReturn("topic1");
+        Mockito.when(getCoachDto.getTopicTwo().getName()).thenReturn("topic2");
+        GetUserDto getUserDTO = Mockito.mock(GetUserDto.class);
+
+        Mockito.when(userRepository.findByCoach_Id(newId)).thenReturn(Optional.of(user));
+        Assertions.assertNotNull(Mockito.when(coachService.updateTopic(topic1, getTopicDto1)).thenReturn(topic1));
+
+        coachService.editCoach(newId.toString(), getCoachDto);
+
+
+    }
 
 
 }
