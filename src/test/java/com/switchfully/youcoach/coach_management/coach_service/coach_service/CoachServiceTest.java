@@ -11,7 +11,7 @@ import com.switchfully.youcoach.exceptions.UserNotFoundException;
 import com.switchfully.youcoach.user_management.user_domain.entity.Email;
 import com.switchfully.youcoach.user_management.user_domain.entity.User;
 import com.switchfully.youcoach.user_management.user_domain.repository.UserRepository;
-import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDTO;
+import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDto;
 import com.switchfully.youcoach.user_management.user_service.user_mapper.UserMapper;
 
 import org.junit.jupiter.api.Assertions;
@@ -55,7 +55,7 @@ class CoachServiceTest {
     @Test
     void whenGivenId_GetTheRightCoach() {
         User user = new User("John", "Doe", new Email("john_doe@hotmail.com"));
-        GetUserDTO getUserDTO = Mockito.mock(GetUserDTO.class);
+        GetUserDto getUserDTO = Mockito.mock(GetUserDto.class);
         Coach coach = new Coach(2, "intro", "available", topic1, topic2);
         GetCoachDto getCoachDto = Mockito.mock(GetCoachDto.class);
         UUID newId = UUID.randomUUID();
