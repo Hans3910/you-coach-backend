@@ -24,6 +24,8 @@ public class UserMapper {
         getUserDTO.setLastName(user.getLastName());
         getUserDTO.setEmail(user.getEmail().getEmail());
         getUserDTO.setPictureUrl(user.getPictureUrl());
+        getUserDTO.setCoacheeId(user.getCoachee().getId().toString());
+        getUserDTO.setCoachId(user.getCoach() == null ? "" : user.getCoach().getId().toString());
         return getUserDTO;
     }
 
