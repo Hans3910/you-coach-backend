@@ -1,8 +1,10 @@
 package com.switchfully.youcoach.user_management.user_service;
 
 
+import com.switchfully.youcoach.coach_management.coach_domain.entity.Coach;
 import com.switchfully.youcoach.user_management.user_domain.entity.Email;
 import com.switchfully.youcoach.user_management.user_domain.entity.User;
+import com.switchfully.youcoach.user_management.user_domain.repository.CoachRepository;
 import com.switchfully.youcoach.user_management.user_domain.repository.CoacheeRepository;
 import com.switchfully.youcoach.user_management.user_domain.repository.UserRepository;
 import com.switchfully.youcoach.exceptions.UsedEmailException;
@@ -29,13 +31,15 @@ public class UserService {
     private UserMapper userMapper;
     private CoacheeRepository coacheeRepository;
     private CoacheeMapper coacheeMapper;
+    private CoachRepository coachRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, UserMapper userMapper, CoacheeRepository coacheeRepository, CoacheeMapper coacheeMapper) {
+    public UserService(UserRepository userRepository, UserMapper userMapper, CoacheeRepository coacheeRepository, CoacheeMapper coacheeMapper, CoachRepository coachRepository) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.coacheeRepository = coacheeRepository;
         this.coacheeMapper = coacheeMapper;
+        this.coachRepository = coachRepository;
     }
 
     public GetCoacheeDto registerUser(CreateUserDto createUserDTO) {
@@ -75,16 +79,22 @@ public class UserService {
         }
     }
 
-    public GetCoacheeDto editUser(String id, GetUserDto getUserDTO) {
+    public GetCoacheeDto editUser(String id, GetCoacheeDto getCoacheeDto) {
         Optional<User> user = userRepository.findById(UUID.fromString(id));
         if (user.isEmpty()) {
             throw new UserNotFoundException("This user does not exist.");
         } else {
             User userToEdit = user.get();
-            userToEdit.setFirstName(getUserDTO.getFirstName());
-            userToEdit.setLastName(getUserDTO.getLastName());
-            userToEdit.setEmail(new Email(getUserDTO.getEmail()));
-            userToEdit.setPictureUrl(getUserDTO.getPictureUrl());
+            userToEdit.setFirstName(getCoacheeDto.getUserInfo().getFirstName());
+            userToEdit.setLastName(getCoacheeDto.getUserInfo().getLastName());
+            userToEdit.setEmail(new Email(getCoacheeDto.getUserInfo().getEmail()));
+            userToEdit.setPictureUrl(getCoacheeDto.getUserInfo().getPictureUrl());
+            if(userToEdit.getCoach() == null && getCoacheeDto.getUserInfo().getRole().equals("coach")) {
+                userToEdit.setCoach(coachRepository.save(new Coach(0,"","",null, null)));
+            }
+            if(userToEdit.getCoach() != null && getCoacheeDto.getUserInfo().getRole().equals("coachee")) {
+                userToEdit.setCoach(null);
+            }
             return coacheeMapper.convertCoacheeToGetCoacheeDTO(userToEdit.getCoachee(),userMapper.convertUserToGetUserDTO(userToEdit));
         }
     }

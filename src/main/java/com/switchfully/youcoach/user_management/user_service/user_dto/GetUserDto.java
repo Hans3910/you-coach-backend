@@ -8,6 +8,7 @@ public class GetUserDto {
     private String pictureUrl;
     private String coacheeId;
     private String coachId;
+    private String role;
 
     public String getUserId() {
         return userId;
@@ -63,5 +64,13 @@ public class GetUserDto {
 
     public void setCoachId(String coachId) {
         this.coachId = coachId;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

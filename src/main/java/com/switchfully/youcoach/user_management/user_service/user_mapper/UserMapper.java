@@ -2,6 +2,7 @@ package com.switchfully.youcoach.user_management.user_service.user_mapper;
 
 import com.switchfully.youcoach.user_management.user_domain.entity.Email;
 import com.switchfully.youcoach.user_management.user_domain.entity.User;
+import com.switchfully.youcoach.user_management.user_domain.entity.UserRole;
 import com.switchfully.youcoach.user_management.user_service.user_dto.CreateUserDto;
 import com.switchfully.youcoach.user_management.user_service.user_dto.GetCoacheeDto;
 import com.switchfully.youcoach.user_management.user_service.user_dto.GetUserDto;
@@ -26,6 +27,7 @@ public class UserMapper {
         getUserDTO.setPictureUrl(user.getPictureUrl());
         getUserDTO.setCoacheeId(user.getCoachee().getId().toString());
         getUserDTO.setCoachId(user.getCoach() == null ? "" : user.getCoach().getId().toString());
+        getUserDTO.setRole(UserRole.checkRole(user).toString());
         return getUserDTO;
     }
 

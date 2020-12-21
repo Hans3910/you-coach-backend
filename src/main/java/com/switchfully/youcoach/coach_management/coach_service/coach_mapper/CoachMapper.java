@@ -18,7 +18,6 @@ public class CoachMapper {
         getCoachDto.setTopicOne(coach.getTopicOne()!=null? convertTopicToDto(coach.getTopicOne()): new GetTopicDto());
         getCoachDto.setTopicTwo(coach.getTopicTwo()!=null? convertTopicToDto(coach.getTopicTwo()): new GetTopicDto());
         getCoachDto.setUserInfo(getUserDTO);
-        System.out.println(getCoachDto);
         return getCoachDto;
     }
 
