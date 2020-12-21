@@ -20,10 +20,27 @@ public class WebConfiguration implements WebMvcConfigurer {
                 .allowedMethods("OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
-        ;
 
         registry.addMapping("/users/**")
                 .allowedOrigins("http://localhost:4200")
+                .allowedMethods("POST")
+                .allowedMethods("GET")
+                .allowedMethods("PUT")
+                .allowedMethods("OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true);
+
+        registry.addMapping("/users")
+                .allowedOrigins("https://5fe0b4d723860544097907bb--suspicious-euler-0c1f69.netlify.app")
+                .allowedMethods("POST")
+                .allowedMethods("GET")
+                .allowedMethods("PUT")
+                .allowedMethods("OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true);
+
+        registry.addMapping("/users/**")
+                .allowedOrigins("https://5fe0b4d723860544097907bb--suspicious-euler-0c1f69.netlify.app")
                 .allowedMethods("POST")
                 .allowedMethods("GET")
                 .allowedMethods("PUT")
