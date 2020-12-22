@@ -6,6 +6,9 @@ public class GetUserDto {
     private String lastName;
     private String email;
     private String pictureUrl;
+    private String coacheeId;
+    private String coachId;
+    private String role;
 
     public String getUserId() {
         return userId;
@@ -45,5 +48,29 @@ public class GetUserDto {
 
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
+    }
+
+    public String getCoacheeId() {
+        return coacheeId;
+    }
+
+    public void setCoacheeId(String coacheeId) {
+        this.coacheeId = coacheeId;
+    }
+
+    public String getCoachId() {
+        return coachId;
+    }
+
+    public void setCoachId(String coachId) {
+        this.coachId = coachId;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

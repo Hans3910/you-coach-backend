@@ -51,7 +51,7 @@ public class UserController {
 
     @PostMapping(path = "/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public GetCoacheeDto editUser(@PathVariable String userId, @RequestBody GetUserDto getUserDTO) {
-        return userService.editUser(userId, getUserDTO);
+    public GetCoacheeDto editUser(@PathVariable String userId, @RequestBody GetCoacheeDto getCoacheeDto) {
+        return userService.editUser(userId, getCoacheeDto);
     }
 }

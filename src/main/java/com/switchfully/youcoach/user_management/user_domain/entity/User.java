@@ -47,7 +47,7 @@ public class User {
         this.email = email;
         this.coachee = new Coachee();
         this.coach = null;
-        this.pictureUrl = "";
+        this.pictureUrl = "assets/defaultProfile.svg";
 //       this.admin= null;
     }
 

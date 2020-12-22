@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.util.Assert;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @DataJpaTest
 class UserRepositoryTest {
@@ -45,6 +47,27 @@ class UserRepositoryTest {
         Assertions.assertFalse(userRepository.existsDistinctByEmail(new Email("jeroenDeMan@admin.com")));
     }
 
+    @Test
+    @Sql("users.sql")
+    public void givenCorrectCoachID_coachIsRetrievedFromDatabase() {
+        Optional<User> optionalUser = userRepository.findByCoach_Id(UUID.fromString("123e4567-e89b-42d3-a456-556642440000"));
 
+        Assertions.assertTrue(optionalUser.isPresent());
+    }
+
+    @Test
+    @Sql("users.sql")
+    public void givenIncorrectCoachID_coachIsRetrievedFromDatabase() {
+        Optional<User> optionalUser = userRepository.findByCoach_Id(UUID.fromString("fa6f0fce-a3c3-453c-827b-cd3579ebb576"));
+
+        Assertions.assertTrue(optionalUser.isEmpty());
+    }
+
+    @Test
+    @Sql("users.sql")
+    public void requestingAllCoaches_ListSizeIs1() {
+
+        Assertions.assertEquals(1, userRepository.findAllByCoachIsNotNull().size());
+    }
 
 }

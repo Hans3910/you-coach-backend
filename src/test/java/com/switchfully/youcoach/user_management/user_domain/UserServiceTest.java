@@ -2,6 +2,7 @@ package com.switchfully.youcoach.user_management.user_domain;
 
 import com.switchfully.youcoach.user_management.user_domain.entity.Email;
 import com.switchfully.youcoach.user_management.user_domain.entity.User;
+import com.switchfully.youcoach.user_management.user_domain.repository.CoachRepository;
 import com.switchfully.youcoach.user_management.user_domain.repository.CoacheeRepository;
 import com.switchfully.youcoach.user_management.user_domain.repository.UserRepository;
 import com.switchfully.youcoach.exceptions.UsedEmailException;
@@ -27,6 +28,7 @@ class UserServiceTest {
     private UserService userService;
     private CoacheeRepository coacheeRepository;
     private CoacheeMapper coacheeMapper;
+    private CoachRepository coachRepository;
 
     @BeforeEach
     public void setUp() {
@@ -34,7 +36,8 @@ class UserServiceTest {
         userMapper = Mockito.mock(UserMapper.class);
         coacheeRepository = Mockito.mock(CoacheeRepository.class);
         coacheeMapper = Mockito.mock(CoacheeMapper.class);
-        userService = new UserService(userRepository, userMapper, coacheeRepository, coacheeMapper);
+        coachRepository = Mockito.mock(CoachRepository.class);
+        userService = new UserService(userRepository, userMapper, coacheeRepository, coacheeMapper, coachRepository);
     }
 
     @Test
