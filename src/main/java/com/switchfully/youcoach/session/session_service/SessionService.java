@@ -55,4 +55,17 @@ public class SessionService {
         return result;
 
     }
+
+    public List<SessionDto> getAllSessionsForACoach(String coachId) {
+        List<SessionDto> result = sessionRepository.findByCoach_Id(UUID.fromString(coachId))
+                .stream()
+                .map(session -> sessionMapper.convertSessionToSessionDto(session))
+                .collect(Collectors.toList());
+
+        result.forEach(sessionDTO -> sessionDTO.setCoacheeFullName(userRepository.findByCoachee_Id(UUID.fromString(sessionDTO.getCoacheeId())).get().getFullName()));
+        result.forEach(sessionDTO -> sessionDTO.setCoachFullName(userRepository.findByCoach_Id(UUID.fromString(sessionDTO.getCoachId())).get().getFullName()));
+
+        return result;
+
+    }
 }

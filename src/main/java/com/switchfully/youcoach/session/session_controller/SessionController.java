@@ -33,4 +33,10 @@ public class SessionController {
     public List<SessionDto> getAllSessionsForACoachee(@PathVariable String coacheeId) {
         return sessionService.getAllSessionsForACoachee(coacheeId);
     }
+
+    @GetMapping(path = "/coachSessions/{coachId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public List<SessionDto> getAllSessionsForACoach(@PathVariable String coachId) {
+        return sessionService.getAllSessionsForACoach(coachId);
+    }
 }

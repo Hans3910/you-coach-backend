@@ -103,4 +103,12 @@ public class Session {
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
+
+    public SessionStatus getSessionStatus() {
+        return sessionStatus;
+    }
+
+    public void setSessionStatus(SessionStatus sessionStatus) {
+        this.sessionStatus = sessionStatus;
+    }
 }

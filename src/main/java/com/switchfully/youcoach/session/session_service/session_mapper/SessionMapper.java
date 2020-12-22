@@ -26,7 +26,9 @@ public class SessionMapper {
                 session.getSubject(),
                 session.getRequestedDate().format(FormatUtil.getDateFormat()),
                 session.getRequestedTime().format(FormatUtil.getTimeFormat()),
-                session.getLocation());
+                session.getLocation(),
+                session.getSessionStatus().toString());
+
     }
 
 
