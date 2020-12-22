@@ -9,14 +9,13 @@ public class SessionDto {
         private String requestedDate;
         private String requestedTime;
         private String location;
-        private String remarks;
         private String coacheeFullName;
         private String coachFullName;
 
     public SessionDto() {
     }
 
-    public SessionDto(String id, String coacheeId, String coachId, String subject, String requestedDate, String requestedTime, String location, String remarks, String coacheeFullName, String coachFullName) {
+    public SessionDto(String id, String coacheeId, String coachId, String subject, String requestedDate, String requestedTime, String location, String coacheeFullName, String coachFullName) {
         this.id = id;
         this.coacheeId = coacheeId;
         this.coachId = coachId;
@@ -24,7 +23,6 @@ public class SessionDto {
         this.requestedDate = requestedDate;
         this.requestedTime = requestedTime;
         this.location = location;
-        this.remarks = remarks;
         this.coacheeFullName = coacheeFullName;
         this.coachFullName = coachFullName;
     }
@@ -85,11 +83,8 @@ public class SessionDto {
         this.location = location;
     }
 
-    public String getRemarks() {
-        return remarks;
-    }
+    public void setCoacheeFullName(String coacheeFullName) {this.coacheeFullName = coacheeFullName;}
 
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
-    }
+    public void setCoachFullName(String coachFullName) {this.coachFullName = coachFullName;}
+
 }

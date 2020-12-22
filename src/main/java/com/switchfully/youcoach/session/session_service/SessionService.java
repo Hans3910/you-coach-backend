@@ -3,6 +3,7 @@ package com.switchfully.youcoach.session.session_service;
 import com.switchfully.youcoach.exceptions.UserNotFoundException;
 import com.switchfully.youcoach.session.session_domain.repository.SessionRepository;
 import com.switchfully.youcoach.session.session_service.session_dto.CreateSessionDto;
+import com.switchfully.youcoach.session.session_service.session_dto.SessionDto;
 import com.switchfully.youcoach.session.session_service.session_mapper.SessionMapper;
 import com.switchfully.youcoach.coach_management.coach_domain.entity.Coach;
 import com.switchfully.youcoach.user_management.user_domain.entity.Coachee;
@@ -11,6 +12,7 @@ import com.switchfully.youcoach.user_management.user_domain.repository.CoacheeRe
 import com.switchfully.youcoach.user_management.user_domain.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -40,4 +42,13 @@ public class SessionService {
         sessionRepository.save(sessionMapper.convertSessionDtoToSession(createSessionDto,optionalCoachee.get(),optionalCoach.get()));
     }
 
+    public List<SessionDto> getAllSessionsForACoachee(String coacheeId){
+        return sessionRepository.findByCoachee_Id(UUID.fromString(coacheeId))
+                .stream()
+                .map(session -> sessionMapper.convertSessionToSessionDto(session))
+                .map(sessionDto -> sessionDto.setCoacheeFullName(userRepository.findByCoachee_Id(UUID.fromString(sessionDto.getCoacheeId())).get().getFullName()))
+                .map(sessionDto -> sessionDto.setCoachFullName(userRepository.findByCoach_Id(UUID.fromString(sessionDto.getCoachId())).get().getFullName()))
+                .collect(CollectorsToList());
+
+    }
 }

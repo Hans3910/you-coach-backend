@@ -19,7 +19,7 @@ public class SessionMapper {
                 LocalTime.parse(sessionDto.getRequestedTime(), FormatUtil.getTimeFormat()), sessionDto.getLocation(), sessionDto.getRemarks());
     }
 
-    public SessionDto convertSessionToSessionDto(Session session, User coachee, User coach){
+    public SessionDto convertSessionToSessionDto(Session session){
         return new SessionDto(session.getId().toString(),
                 session.getCoachee().getId().toString(),
                 session.getCoach().getId().toString(),
@@ -27,8 +27,7 @@ public class SessionMapper {
                 session.getRequestedDate().format(FormatUtil.getDateFormat()),
                 session.getRequestedTime().format(FormatUtil.getTimeFormat()),
                 session.getLocation(),
-                session.getRemarks(),
-                coachee.getFullName(),
-                coach.getFullName());
     }
+
+
 }
