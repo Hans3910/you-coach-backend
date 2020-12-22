@@ -3,10 +3,13 @@ package com.switchfully.youcoach.session.session_controller;
 import com.switchfully.youcoach.session.session_domain.repository.SessionRepository;
 import com.switchfully.youcoach.session.session_service.SessionService;
 import com.switchfully.youcoach.session.session_service.session_dto.CreateSessionDto;
+import com.switchfully.youcoach.session.session_service.session_dto.SessionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/sessions")
@@ -25,7 +28,9 @@ public class SessionController {
         sessionService.createSession(createSessionDto);
     }
 
-
-
-
+    @GetMapping(path = "/coacheeSessions/{coacheeId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public List<SessionDto> getAllSessionsForACoachee(@PathVariable String coacheeId) {
+        return sessionService.getAllSessionsForACoachee(coacheeId);
+    }
 }

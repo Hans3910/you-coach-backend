@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class SessionService {
@@ -33,22 +34,25 @@ public class SessionService {
         this.coachRepository = coachRepository;
     }
 
-    public void createSession(CreateSessionDto createSessionDto){
+    public void createSession(CreateSessionDto createSessionDto) {
         Optional<Coachee> optionalCoachee = coacheeRepository.findById(UUID.fromString(createSessionDto.getCoacheeId()));
-        Optional<Coach> optionalCoach =  coachRepository.findById(UUID.fromString(createSessionDto.getCoachId()));
-        if (optionalCoach.isEmpty()||optionalCoachee.isEmpty()){
+        Optional<Coach> optionalCoach = coachRepository.findById(UUID.fromString(createSessionDto.getCoachId()));
+        if (optionalCoach.isEmpty() || optionalCoachee.isEmpty()) {
             throw new UserNotFoundException("Coach or coachee is not registered in the system");
         }
-        sessionRepository.save(sessionMapper.convertSessionDtoToSession(createSessionDto,optionalCoachee.get(),optionalCoach.get()));
+        sessionRepository.save(sessionMapper.convertSessionDtoToSession(createSessionDto, optionalCoachee.get(), optionalCoach.get()));
     }
 
-    public List<SessionDto> getAllSessionsForACoachee(String coacheeId){
-        return sessionRepository.findByCoachee_Id(UUID.fromString(coacheeId))
+    public List<SessionDto> getAllSessionsForACoachee(String coacheeId) {
+        List<SessionDto> result = sessionRepository.findByCoachee_Id(UUID.fromString(coacheeId))
                 .stream()
                 .map(session -> sessionMapper.convertSessionToSessionDto(session))
-                .map(sessionDto -> sessionDto.setCoacheeFullName(userRepository.findByCoachee_Id(UUID.fromString(sessionDto.getCoacheeId())).get().getFullName()))
-                .map(sessionDto -> sessionDto.setCoachFullName(userRepository.findByCoach_Id(UUID.fromString(sessionDto.getCoachId())).get().getFullName()))
-                .collect(CollectorsToList());
+                .collect(Collectors.toList());
+
+        result.forEach(sessionDTO -> sessionDTO.setCoacheeFullName(userRepository.findByCoachee_Id(UUID.fromString(sessionDTO.getCoacheeId())).get().getFullName()));
+        result.forEach(sessionDTO -> sessionDTO.setCoachFullName(userRepository.findByCoach_Id(UUID.fromString(sessionDTO.getCoachId())).get().getFullName()));
+
+        return result;
 
     }
 }

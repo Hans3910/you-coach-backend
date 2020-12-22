@@ -15,7 +15,7 @@ public class SessionDto {
     public SessionDto() {
     }
 
-    public SessionDto(String id, String coacheeId, String coachId, String subject, String requestedDate, String requestedTime, String location, String coacheeFullName, String coachFullName) {
+    public SessionDto(String id, String coacheeId, String coachId, String subject, String requestedDate, String requestedTime, String location) {
         this.id = id;
         this.coacheeId = coacheeId;
         this.coachId = coachId;
@@ -23,8 +23,8 @@ public class SessionDto {
         this.requestedDate = requestedDate;
         this.requestedTime = requestedTime;
         this.location = location;
-        this.coacheeFullName = coacheeFullName;
-        this.coachFullName = coachFullName;
+        this.coacheeFullName = "";
+        this.coachFullName = "";
     }
 
     public String getId() {
@@ -87,4 +87,11 @@ public class SessionDto {
 
     public void setCoachFullName(String coachFullName) {this.coachFullName = coachFullName;}
 
+    public String getCoacheeFullName() {
+        return coacheeFullName;
+    }
+
+    public String getCoachFullName() {
+        return coachFullName;
+    }
 }
