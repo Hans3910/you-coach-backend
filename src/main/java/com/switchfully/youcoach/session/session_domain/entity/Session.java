@@ -26,8 +26,11 @@ public class Session {
     private String location;
     @Column
     private String remarks;
+    @Enumerated(EnumType.STRING)
+    private SessionStatus sessionStatus;
 
     public Session(Coachee coachee, Coach coach, String subject, LocalDate requestedDate, LocalTime requestedTime, String location, String remarks) {
+
         this.id = UUID.randomUUID();
         this.coachee = coachee;
         this.coach = coach;
@@ -36,6 +39,7 @@ public class Session {
         this.requestedTime = requestedTime;
         this.location = location;
         this.remarks = remarks;
+        this.sessionStatus = SessionStatus.REQUESTED;
     }
 
     public Session() {    }
