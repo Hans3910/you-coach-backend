@@ -22,7 +22,7 @@ class UserRepositoryTest {
     @Test
     @Sql("users.sql")
     public void givenCorrectUserEmail_whenRetrievingUserByEmail_IsPresent() {
-        Optional<User> optionalUser = userRepository.findByEmail(new Email("jeroen@admin.com"));
+        Optional<User> optionalUser = userRepository.findByEmail(new Email("Jeroen@admin.com"));
 
         Assertions.assertTrue(optionalUser.isPresent());
     }
