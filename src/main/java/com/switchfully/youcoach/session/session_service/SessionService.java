@@ -72,9 +72,24 @@ public class SessionService {
 
     }
 
-    public List<SessionDto> getAllSessionsForACoach(String coachId) {
+    public List<SessionDto> getAllUpcomingSessionsForACoach(String coachId) {
         List<SessionDto> result = sessionRepository.findByCoach_Id(UUID.fromString(coachId))
                 .stream()
+                .filter(session -> session.getRequestedDate().isAfter(LocalDate.now()) || session.getRequestedDate().equals(LocalDate.now()))
+                .map(session -> sessionMapper.convertSessionToSessionDto(session))
+                .collect(Collectors.toList());
+
+        result.forEach(sessionDTO -> sessionDTO.setCoacheeFullName(userRepository.findByCoachee_Id(UUID.fromString(sessionDTO.getCoacheeId())).get().getFullName()));
+        result.forEach(sessionDTO -> sessionDTO.setCoachFullName(userRepository.findByCoach_Id(UUID.fromString(sessionDTO.getCoachId())).get().getFullName()));
+
+        return result;
+
+    }
+
+    public List<SessionDto> getAllPastSessionsForACoach(String coachId) {
+        List<SessionDto> result = sessionRepository.findByCoach_Id(UUID.fromString(coachId))
+                .stream()
+                .filter(session -> session.getRequestedDate().isBefore(LocalDate.now()))
                 .map(session -> sessionMapper.convertSessionToSessionDto(session))
                 .collect(Collectors.toList());
 

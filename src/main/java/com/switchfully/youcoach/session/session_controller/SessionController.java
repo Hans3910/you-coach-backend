@@ -35,13 +35,19 @@ public class SessionController {
 
     @GetMapping(path = "/coachSessions/{coachId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<SessionDto> getAllSessionsForACoach(@PathVariable String coachId) {
-        return sessionService.getAllSessionsForACoach(coachId);
+    public List<SessionDto> getAllUpcomingSessionsForACoach(@PathVariable String coachId) {
+        return sessionService.getAllUpcomingSessionsForACoach(coachId);
     }
 
     @GetMapping(path = "/coacheeSessions/{coacheeId}/past", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public List<SessionDto> getAllSessionsForACoacheeInPast(@PathVariable String coacheeId) {
         return sessionService.getAllSessionsForACoacheeInPast(coacheeId);
+    }
+
+    @GetMapping(path = "/coachSessions/{coachId}/past", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public List<SessionDto> getAllPastSessionsForACoach(@PathVariable String coachId) {
+        return sessionService.getAllPastSessionsForACoach(coachId);
     }
 }
