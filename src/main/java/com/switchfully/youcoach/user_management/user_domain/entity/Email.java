@@ -40,7 +40,7 @@ public class Email {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Email email1 = (Email) o;
-        return Objects.equals(email, email1.email);
+        return Objects.equals(email.toLowerCase(), email1.email.toLowerCase());
     }
 
     @Override

@@ -17,4 +17,11 @@ class EmailTest {
     void givenInvalidString_EmailExceptionIsThrown() {
         Assertions.assertThrows(EmailException.class, () -> new Email("Invalid email"));
     }
+
+    @Test
+    void givenTwoEqualEmails_OneWithCapitalAndOneWithLowerCase_ExpectedToBeEqual(){
+        Email email = new Email("hans@hans.com");
+        Email email1 = new Email("Hans@hans.com");
+        Assertions.assertEquals(email, email1);
+    }
 }
