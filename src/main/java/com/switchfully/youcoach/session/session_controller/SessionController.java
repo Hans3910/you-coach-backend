@@ -1,6 +1,5 @@
 package com.switchfully.youcoach.session.session_controller;
 
-import com.switchfully.youcoach.session.session_domain.repository.SessionRepository;
 import com.switchfully.youcoach.session.session_service.SessionService;
 import com.switchfully.youcoach.session.session_service.session_dto.CreateSessionDto;
 import com.switchfully.youcoach.session.session_service.session_dto.SessionDto;
@@ -31,12 +30,18 @@ public class SessionController {
     @GetMapping(path = "/coacheeSessions/{coacheeId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public List<SessionDto> getAllSessionsForACoachee(@PathVariable String coacheeId) {
-        return sessionService.getAllSessionsForACoachee(coacheeId);
+        return sessionService.getAllUpcommingSessionsForCoachee(coacheeId);
     }
 
     @GetMapping(path = "/coachSessions/{coachId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public List<SessionDto> getAllSessionsForACoach(@PathVariable String coachId) {
         return sessionService.getAllSessionsForACoach(coachId);
+    }
+
+    @GetMapping(path = "/coacheeSessions/{coacheeId}/past", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public List<SessionDto> getAllSessionsForACoacheeInPast(@PathVariable String coacheeId) {
+        return sessionService.getAllSessionsForACoacheeInPast(coacheeId);
     }
 }

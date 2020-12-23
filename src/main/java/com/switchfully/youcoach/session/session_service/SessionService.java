@@ -12,6 +12,7 @@ import com.switchfully.youcoach.user_management.user_domain.repository.CoacheeRe
 import com.switchfully.youcoach.user_management.user_domain.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -43,9 +44,24 @@ public class SessionService {
         sessionRepository.save(sessionMapper.convertSessionDtoToSession(createSessionDto, optionalCoachee.get(), optionalCoach.get()));
     }
 
-    public List<SessionDto> getAllSessionsForACoachee(String coacheeId) {
+    public List<SessionDto> getAllUpcommingSessionsForCoachee(String coacheeId) {
         List<SessionDto> result = sessionRepository.findByCoachee_Id(UUID.fromString(coacheeId))
                 .stream()
+                .filter(session -> session.getRequestedDate().isAfter(LocalDate.now()) || session.getRequestedDate().equals(LocalDate.now()))
+                .map(session -> sessionMapper.convertSessionToSessionDto(session))
+                .collect(Collectors.toList());
+
+        result.forEach(sessionDTO -> sessionDTO.setCoacheeFullName(userRepository.findByCoachee_Id(UUID.fromString(sessionDTO.getCoacheeId())).get().getFullName()));
+        result.forEach(sessionDTO -> sessionDTO.setCoachFullName(userRepository.findByCoach_Id(UUID.fromString(sessionDTO.getCoachId())).get().getFullName()));
+
+        return result;
+
+    }
+
+    public List<SessionDto> getAllSessionsForACoacheeInPast(String coacheeId) {
+        List<com.switchfully.youcoach.session.session_service.session_dto.SessionDto> result = sessionRepository.findByCoachee_Id(UUID.fromString(coacheeId))
+                .stream()
+                .filter(session -> session.getRequestedDate().isBefore(LocalDate.now()))
                 .map(session -> sessionMapper.convertSessionToSessionDto(session))
                 .collect(Collectors.toList());
 
@@ -68,4 +84,8 @@ public class SessionService {
         return result;
 
     }
+
+
+
+
 }

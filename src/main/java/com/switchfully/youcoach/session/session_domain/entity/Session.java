@@ -27,6 +27,7 @@ public class Session {
     @Column
     private String remarks;
     @Enumerated(EnumType.STRING)
+    @Column(name = "session_status")
     private SessionStatus sessionStatus;
 
     public Session(Coachee coachee, Coach coach, String subject, LocalDate requestedDate, LocalTime requestedTime, String location, String remarks) {
@@ -42,7 +43,9 @@ public class Session {
         this.sessionStatus = SessionStatus.REQUESTED;
     }
 
-    public Session() {    }
+    public Session() {
+        this.sessionStatus = SessionStatus.REQUESTED;
+    }
 
     public UUID getId() {
         return id;
